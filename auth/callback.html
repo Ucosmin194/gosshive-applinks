@@ -45,35 +45,8 @@
         p {
             font-size: 1.1em;
             opacity: 0.9;
-            margin-bottom: 30px;
-        }
-        .status {
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
             margin-bottom: 20px;
-        }
-        .buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1em;
-        }
-        .btn:hover {
-            background: white;
-            transform: translateY(-2px);
+            line-height: 1.6;
         }
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.3);
@@ -88,120 +61,197 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .error {
-            color: #ff6b6b;
-            background: rgba(255, 107, 107, 0.2);
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
-        .success {
-            color: #51cf66;
-            background: rgba(81, 207, 102, 0.2);
+        .btn {
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="icon">🐝</div>
-        <h1>Email Confirmation</h1>
-        <div id="status" class="status">
+        <div class="icon" id="icon">🐝</div>
+        <h1 id="title">Email Confirmation</h1>
+        
+        <!-- Loading State -->
+        <div id="loading">
             <div class="spinner"></div>
             <p>Confirming your email...</p>
         </div>
-        <div id="content" style="display: none;">
-            <p id="message"></p>
+
+        <!-- Success State -->
+        <div id="success" class="hidden">
+            <p>✅ Email confirmed successfully!</p>
+            <p>Opening GossHive app...</p>
             <div class="buttons">
-                <button id="openApp" class="btn" onclick="openApp()" style="display: none;">
-                    📱 Open GossHive
-                </button>
-                <a href="https://apps.apple.com/app/gosshive" class="btn" id="appStore" style="display: none;">
-                    🍎 App Store
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.gosshive.app" class="btn" id="playStore" style="display: none;">
-                    🤖 Play Store
-                </a>
+                <button class="btn" onclick="openApp()">📱 Open App Now</button>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="hidden">
+            <p id="errorMessage">❌ Something went wrong</p>
+            <div class="buttons">
+                <button class="btn" onclick="openApp()">📱 Try Opening App</button>
+                <a href="https://apps.apple.com/app/gosshive" class="btn" id="appStoreBtn">🍎 App Store</a>
+                <a href="https://play.google.com/store/apps/details?id=com.gosshive.app" class="btn" id="playStoreBtn">🤖 Play Store</a>
+            </div>
+        </div>
+
+        <!-- No Tokens State -->
+        <div id="noTokens" class="hidden">
+            <p>Please check your email for the confirmation link.</p>
+            <div class="buttons">
+                <a href="https://apps.apple.com/app/gosshive" class="btn">🍎 App Store</a>
+                <a href="https://play.google.com/store/apps/details?id=com.gosshive.app" class="btn">🤖 Play Store</a>
             </div>
         </div>
     </div>
 
-    <script type="module">
-        // Get URL parameters
-        const params = new URLSearchParams(window.location.search);
-        const tokenHash = params.get('token_hash');
-        const type = params.get('type');
-        const error = params.get('error');
-        const errorDescription = params.get('error_description');
+    <script>
+        const loading = document.getElementById('loading');
+        const success = document.getElementById('success');
+        const error = document.getElementById('error');
+        const noTokens = document.getElementById('noTokens');
+        const errorMessage = document.getElementById('errorMessage');
+        const icon = document.getElementById('icon');
+        const title = document.getElementById('title');
 
-        const statusDiv = document.getElementById('status');
-        const contentDiv = document.getElementById('content');
-        const messageEl = document.getElementById('message');
-        const openAppBtn = document.getElementById('openApp');
-        const appStoreBtn = document.getElementById('appStore');
-        const playStoreBtn = document.getElementById('playStore');
+        // Get URL parameters from query string (?)
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Get URL parameters from hash fragment (#) - Supabase sends tokens here
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        
+        // Try to get tokens from either location
+        const accessToken = hashParams.get('access_token') || urlParams.get('access_token');
+        const refreshToken = hashParams.get('refresh_token') || urlParams.get('refresh_token');
+        const errorParam = hashParams.get('error') || urlParams.get('error');
+        const errorDescription = hashParams.get('error_description') || urlParams.get('error_description');
+        const tokenHash = urlParams.get('token_hash') || hashParams.get('token_hash');
+        const type = urlParams.get('type') || hashParams.get('type');
 
-        // Function to detect mobile OS
+        // Debug logging
+        console.log('URL:', window.location.href);
+        console.log('Query params:', Object.fromEntries(urlParams));
+        console.log('Hash params:', Object.fromEntries(hashParams));
+        console.log('Found tokens:', {
+            accessToken: accessToken ? 'YES' : 'NO',
+            refreshToken: refreshToken ? 'YES' : 'NO',
+            tokenHash: tokenHash ? 'YES' : 'NO',
+            error: errorParam || 'NO'
+        });
+
         function getMobileOS() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (/android/i.test(userAgent)) return "Android";
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return "iOS";
-            return "Other";
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.includes('android')) return 'Android';
+            if (userAgent.includes('iphone') || userAgent.includes('ipad')) return 'iOS';
+            return 'Other';
         }
 
-        // Function to attempt deep link
         function openApp() {
             const deepLink = 'gosshive://auth/callback?success=true';
+            console.log('Attempting deep link:', deepLink);
+            
+            // Try to open the app
             window.location.href = deepLink;
             
-            // Fallback: If app doesn't open in 2 seconds, show store buttons
+            // Fallback: Show app store buttons after 2.5 seconds if app didn't open
             setTimeout(() => {
-                showStoreButtons();
-            }, 2000);
+                const os = getMobileOS();
+                const appStoreBtn = document.getElementById('appStoreBtn');
+                const playStoreBtn = document.getElementById('playStoreBtn');
+                
+                if (appStoreBtn && playStoreBtn) {
+                    if (os === 'iOS') {
+                        appStoreBtn.style.display = 'inline-block';
+                        playStoreBtn.style.display = 'none';
+                    } else if (os === 'Android') {
+                        appStoreBtn.style.display = 'none';
+                        playStoreBtn.style.display = 'inline-block';
+                    } else {
+                        appStoreBtn.style.display = 'inline-block';
+                        playStoreBtn.style.display = 'inline-block';
+                    }
+                }
+            }, 2500);
         }
 
-        // Show appropriate app store buttons
-        function showStoreButtons() {
-            const os = getMobileOS();
-            if (os === "iOS") {
-                appStoreBtn.style.display = 'inline-block';
-            } else if (os === "Android") {
-                playStoreBtn.style.display = 'inline-block';
-            } else {
-                // Desktop - show both
-                appStoreBtn.style.display = 'inline-block';
-                playStoreBtn.style.display = 'inline-block';
-            }
+        function showSuccess() {
+            loading.classList.add('hidden');
+            success.classList.remove('hidden');
+            icon.textContent = '✅';
+            title.textContent = 'Welcome to GossHive!';
+            
+            // Auto-attempt to open app after 1.5 seconds
+            setTimeout(() => {
+                openApp();
+            }, 1500);
         }
 
-        // Main confirmation logic
-        async function handleConfirmation() {
-            // Check for errors from Supabase
-            if (error) {
-                statusDiv.style.display = 'none';
-                contentDiv.style.display = 'block';
-                statusDiv.className = 'status error';
-                messageEl.innerHTML = `❌ ${errorDescription || 'Confirmation failed. Please try again.'}`;
-                showStoreButtons();
+        function showError(message) {
+            loading.classList.add('hidden');
+            error.classList.remove('hidden');
+            icon.textContent = '❌';
+            title.textContent = 'Confirmation Failed';
+            errorMessage.textContent = message;
+        }
+
+        function showNoTokens() {
+            loading.classList.add('hidden');
+            noTokens.classList.remove('hidden');
+            icon.textContent = '📧';
+            title.textContent = 'Check Your Email';
+        }
+
+        // Main confirmation handler
+        function handleConfirmation() {
+            // Check for errors first
+            if (errorParam) {
+                console.error('Error from Supabase:', errorParam, errorDescription);
+                showError(errorDescription || 'Email confirmation failed. Please try again or contact support.');
                 return;
             }
 
-            // If we got here from email link, Supabase already confirmed the account
-            // The token_hash in URL means it worked
-            if (tokenHash && type === 'signup') {
-                // Show success
-                statusDiv.style.display = 'none';
-                contentDiv.style.display = 'block';
-                messageEl.innerHTML = '✅ Email confirmed! Opening GossHive...';
-                openAppBtn.style.display = 'inline-block';
-
-                // Auto-attempt deep link after 1 second
-                setTimeout(() => {
-                    openApp();
-                }, 1000);
-            } else {
-                // No token - just show a generic message
-                statusDiv.style.display = 'none';
-                contentDiv.style.display = 'block';
-                messageEl.innerHTML = 'Please check your email for the confirmation link.';
-                showStoreButtons();
+            // If we have access_token, confirmation was successful!
+            if (accessToken) {
+                console.log('✅ Email confirmed! Access token found.');
+                showSuccess();
+                return;
             }
+
+            // Legacy: Check for token_hash (older Supabase flow)
+            if (tokenHash && type === 'signup') {
+                console.log('✅ Email confirmed! Token hash found.');
+                showSuccess();
+                return;
+            }
+
+            // No tokens found - user probably just visited the page directly
+            console.log('ℹ️ No confirmation tokens found');
+            showNoTokens();
         }
 
         // Run on page load
