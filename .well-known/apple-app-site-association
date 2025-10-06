@@ -1,0 +1,9 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [{
+      "appID": "PLACEHOLDER_TEAMID.com.gosshive.app",
+      "paths": ["/post/*", "/profile/*", "/hive/*", "/"]
+    }]
+  }
+}
