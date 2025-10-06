@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmed - GossHive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        .status {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.2);
+        }
+        .success {
+            color: #51cf66;
+            background: rgba(81, 207, 102, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🐝</div>
+        <h1>Email Confirmation</h1>
+        <div id="status" class="status">
+            <div class="spinner"></div>
+            <p>Confirming your email...</p>
+        </div>
+        <div id="content" style="display: none;">
+            <p id="message"></p>
+            <div class="buttons">
+                <button id="openApp" class="btn" onclick="openApp()" style="display: none;">
+                    📱 Open GossHive
+                </button>
+                <a href="https://apps.apple.com/app/gosshive" class="btn" id="appStore" style="display: none;">
+                    🍎 App Store
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.gosshive.app" class="btn" id="playStore" style="display: none;">
+                    🤖 Play Store
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const tokenHash = params.get('token_hash');
+        const type = params.get('type');
+        const error = params.get('error');
+        const errorDescription = params.get('error_description');
+
+        const statusDiv = document.getElementById('status');
+        const contentDiv = document.getElementById('content');
+        const messageEl = document.getElementById('message');
+        const openAppBtn = document.getElementById('openApp');
+        const appStoreBtn = document.getElementById('appStore');
+        const playStoreBtn = document.getElementById('playStore');
+
+        // Function to detect mobile OS
+        function getMobileOS() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) return "Android";
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return "iOS";
+            return "Other";
+        }
+
+        // Function to attempt deep link
+        function openApp() {
+            const deepLink = 'gosshive://auth/callback?success=true';
+            window.location.href = deepLink;
+            
+            // Fallback: If app doesn't open in 2 seconds, show store buttons
+            setTimeout(() => {
+                showStoreButtons();
+            }, 2000);
+        }
+
+        // Show appropriate app store buttons
+        function showStoreButtons() {
+            const os = getMobileOS();
+            if (os === "iOS") {
+                appStoreBtn.style.display = 'inline-block';
+            } else if (os === "Android") {
+                playStoreBtn.style.display = 'inline-block';
+            } else {
+                // Desktop - show both
+                appStoreBtn.style.display = 'inline-block';
+                playStoreBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Main confirmation logic
+        async function handleConfirmation() {
+            // Check for errors from Supabase
+            if (error) {
+                statusDiv.style.display = 'none';
+                contentDiv.style.display = 'block';
+                statusDiv.className = 'status error';
+                messageEl.innerHTML = `❌ ${errorDescription || 'Confirmation failed. Please try again.'}`;
+                showStoreButtons();
+                return;
+            }
+
+            // If we got here from email link, Supabase already confirmed the account
+            // The token_hash in URL means it worked
+            if (tokenHash && type === 'signup') {
+                // Show success
+                statusDiv.style.display = 'none';
+                contentDiv.style.display = 'block';
+                messageEl.innerHTML = '✅ Email confirmed! Opening GossHive...';
+                openAppBtn.style.display = 'inline-block';
+
+                // Auto-attempt deep link after 1 second
+                setTimeout(() => {
+                    openApp();
+                }, 1000);
+            } else {
+                // No token - just show a generic message
+                statusDiv.style.display = 'none';
+                contentDiv.style.display = 'block';
+                messageEl.innerHTML = 'Please check your email for the confirmation link.';
+                showStoreButtons();
+            }
+        }
+
+        // Run on page load
+        handleConfirmation();
+    </script>
+</body>
+</html>
