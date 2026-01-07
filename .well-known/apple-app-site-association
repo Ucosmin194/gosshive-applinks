@@ -2,8 +2,18 @@
   "applinks": {
     "apps": [],
     "details": [{
-      "appID": "PLACEHOLDER_TEAMID.com.gosshive.app",
-      "paths": ["/post/*", "/profile/*", "/hive/*", "/"]
+      "appID": "36AK3Y5T2H.app.gosshive",
+      "paths": [
+        "/post/*",
+        "/profile/*",
+        "/hive/*",
+        "/auth/*",
+        "/reset-password*",
+        "/"
+      ]
     }]
+  },
+  "webcredentials": {
+    "apps": ["36AK3Y5T2H.app.gosshive"]
   }
 }

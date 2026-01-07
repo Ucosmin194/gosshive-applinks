@@ -2,7 +2,7 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.gosshive.app",
+    "package_name": "app.gosshive",
     "sha256_cert_fingerprints": [
       "74:D2:24:B9:10:1B:AC:DA:98:E2:83:B6:B2:8C:38:8F:2D:DE:ED:84:DD:E7:BD:3F:EE:9D:EC:60:79:F5:24:8F",
       "1E:D8:90:6F:AC:E6:08:42:2B:84:C4:75:E3:E6:76:37:6A:BA:40:5F:23:75:7C:5E:7C:4D:A0:5D:EF:06:50:21"
