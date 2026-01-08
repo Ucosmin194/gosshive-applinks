@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="GossHive Account Deletion">
   <title>GossHive Account Deletion</title>
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <link rel="apple-touch-icon" href="app-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -45,6 +47,34 @@
       padding: 40px 48px;
       box-shadow: 0 24px 60px -40px var(--shadow);
       border: 1px solid rgba(47, 93, 89, 0.12);
+    }
+
+    .logo-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .app-icon-small {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow:
+        0 12px 24px -12px rgba(209, 85, 42, 0.35),
+        0 4px 8px -4px rgba(47, 93, 89, 0.2);
+      border: 1px solid rgba(47, 93, 89, 0.15);
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      color: var(--accent-2);
+      margin: 0;
+      font-weight: 500;
     }
 
     h1 {
@@ -104,6 +134,10 @@
 </head>
 <body>
   <main>
+    <div class="logo-header">
+      <img class="app-icon-small" src="app-icon.png" alt="GossHive app icon">
+      <p class="eyebrow">GossHive</p>
+    </div>
     <h1>Delete Your GossHive Account</h1>
     <p>If you want to delete your account and personal data, use the in-app deletion flow below.</p>
 
