@@ -264,10 +264,11 @@
         <li>Screen views and in-app events</li>
       </ul>
 
-      <p><strong>Diagnostics (with your consent):</strong></p>
+      <p><strong>Diagnostics (with your consent, GDPR-compliant):</strong></p>
       <ul>
-        <li>App crash logs (Firebase Crashlytics)</li>
-        <li>Performance metrics and error reports</li>
+        <li>App crash logs (Firebase Crashlytics) - anonymized, no personal data</li>
+        <li>Performance metrics and error reports - aggregated statistics only</li>
+        <li>Note: All diagnostic data is anonymized and contains no personally identifiable information</li>
       </ul>
 
       <p><strong>Device and Technical Data:</strong></p>
@@ -379,10 +380,11 @@
 
       <p><strong>Firebase (Google):</strong></p>
       <ul>
-        <li><strong>Firebase Analytics:</strong> Usage statistics (opt-in)</li>
-        <li><strong>Firebase Crashlytics:</strong> Crash reports (opt-in)</li>
+        <li><strong>Firebase Analytics:</strong> Anonymized usage statistics (opt-in, GDPR-compliant, no PII)</li>
+        <li><strong>Firebase Crashlytics:</strong> Anonymized crash reports (opt-in, GDPR-compliant, no PII)</li>
         <li><strong>Firebase Cloud Messaging:</strong> Push notifications</li>
         <li><strong>Firebase Authentication:</strong> Account management</li>
+        <li><strong>Note:</strong> Analytics and Crashlytics data is automatically anonymized and contains no personally identifiable information</li>
         <li><strong>Privacy Policy:</strong> <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></li>
       </ul>
 
@@ -434,7 +436,7 @@
         <li><strong>Votes:</strong> Retained while your account is active to prevent abuse and maintain integrity</li>
         <li><strong>Messages:</strong> Retained while your account is active or until you delete them</li>
         <li><strong>Notification tokens:</strong> Retained while notifications are enabled</li>
-        <li><strong>Analytics and crash reports:</strong> Retained according to provider settings and deleted when no longer needed</li>
+        <li><strong>Analytics and crash reports:</strong> Automatically anonymized and retained by Firebase (typically 60 days for raw data, longer for aggregated statistics). No personal data is retained.</li>
       </ul>
 
       <h3>5.2 Deleted Accounts</h3>
@@ -568,13 +570,20 @@
     <section>
       <h2>11. Analytics and Advertising</h2>
 
-      <h3>11.1 Analytics and Crash Reporting (Opt-In)</h3>
-      <p>If you consent, we collect:</p>
+      <h3>11.1 Analytics and Crash Reporting (Opt-In, GDPR-Compliant)</h3>
+      <p>If you consent, we collect <strong>anonymized, aggregated statistics only</strong>:</p>
       <ul>
-        <li>Which features you use</li>
-        <li>How long you spend in the app</li>
-        <li>App crashes and errors</li>
-        <li>Device type and OS version</li>
+        <li>Which features you use (no user identification)</li>
+        <li>How long you spend in the app (anonymized)</li>
+        <li>App crashes and errors (stack traces without personal data)</li>
+        <li>Device type and OS version (aggregated)</li>
+      </ul>
+      <p><strong>Important:</strong> Analytics and Crashlytics are GDPR-compliant:</p>
+      <ul>
+        <li>No personally identifiable information is collected or stored</li>
+        <li>Data is automatically anonymized before processing</li>
+        <li>Used solely for improving app stability and user experience</li>
+        <li>Automatically deleted according to Firebase retention policies (typically 60 days for raw data)</li>
       </ul>
       <p><strong>You can opt out anytime in Settings > Privacy > Analytics.</strong></p>
 
@@ -678,17 +687,18 @@
       <ul>
         <li>Supabase (database hosting)</li>
         <li>Google Cloud (content moderation)</li>
-        <li>Firebase (analytics, crash reporting, push notifications)</li>
+        <li>Firebase (anonymized analytics, anonymized crash reporting, push notifications)</li>
         <li>Apple (Sign in with Apple)</li>
         <li>Google (Sign-In)</li>
         <li>Law enforcement (if legally required)</li>
       </ul>
+      <p><strong>Note:</strong> Analytics and crash data shared with Firebase contains no personally identifiable information</p>
 
       <h3>16.3 Retention Periods</h3>
       <ul>
         <li>Active account data: Until deletion</li>
         <li>Deleted account data: Immediately after confirmed request</li>
-        <li>Analytics and crash reports: According to provider settings</li>
+        <li>Analytics and crash reports: Automatically anonymized by Firebase (60 days for raw data, no personal data retained)</li>
         <li>Backups: Up to 90 days</li>
       </ul>
     </section>
