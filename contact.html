@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact GossHive support and team">
+  <title>Contact GossHive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --bg: #f5efe7;
+      --paper: #fffaf2;
+      --ink: #1d1b17;
+      --muted: #6a6258;
+      --accent: #d1552a;
+      --accent-2: #2f5d59;
+      --shadow: rgba(32, 24, 16, 0.12);
+      --ring: rgba(209, 85, 42, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Newsreader", Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(47, 93, 89, 0.16), transparent 38%),
+        radial-gradient(circle at 88% 18%, rgba(209, 85, 42, 0.16), transparent 42%),
+        linear-gradient(135deg, #f6ede4 0%, #f2f5ef 60%, #efe6dc 100%);
+      padding: 32px 20px 64px;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 24px;
+      padding: 42px 52px 56px;
+      box-shadow: 0 24px 60px -40px var(--shadow);
+      border: 1px solid rgba(47, 93, 89, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: -120px -120px auto auto;
+      height: 220px;
+      width: 220px;
+      background: radial-gradient(circle, rgba(209, 85, 42, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    header {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      color: var(--accent-2);
+      margin: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: clamp(2.2rem, 2.6vw + 1.2rem, 3.4rem);
+    }
+
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.15rem;
+      line-height: 1.65;
+    }
+
+    section {
+      margin-top: 32px;
+      animation: rise 650ms ease both;
+    }
+
+    section:nth-of-type(2) { animation-delay: 80ms; }
+    section:nth-of-type(3) { animation-delay: 120ms; }
+
+    h2 {
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: 1.6rem;
+      margin: 0 0 16px;
+      color: var(--accent-2);
+    }
+
+    p {
+      margin: 0 0 12px;
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    .contact-card {
+      background: rgba(47, 93, 89, 0.05);
+      border: 1px solid rgba(47, 93, 89, 0.15);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+
+    .contact-card h3 {
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: 1.25rem;
+      margin: 0 0 12px;
+      color: var(--accent-2);
+    }
+
+    .contact-card p {
+      margin: 6px 0;
+    }
+
+    .contact-card strong {
+      color: var(--ink);
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 150ms ease;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+      opacity: 0.85;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      background: rgba(209, 85, 42, 0.06);
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 32px 26px 40px;
+      }
+
+      h1 {
+        font-size: clamp(1.9rem, 4vw + 1rem, 2.8rem);
+      }
+
+      .contact-card {
+        padding: 20px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">GossHive</p>
+      <h1>Contact Us</h1>
+      <p class="intro">
+        Get in touch with the GossHive team. We're here to help with questions, support requests, privacy inquiries, and feedback.
+      </p>
+    </header>
+
+    <section>
+      <h2>Get in Touch</h2>
+
+      <div class="contact-card">
+        <h3>General Support</h3>
+        <p><strong>Email:</strong> <a href="mailto:support@gosshive.app">support@gosshive.app</a></p>
+        <p>For app-related questions, technical issues, account help, and general inquiries.</p>
+      </div>
+
+      <div class="contact-card">
+        <h3>Privacy & Data Questions</h3>
+        <p><strong>Email:</strong> <a href="mailto:privacy@gosshive.app">privacy@gosshive.app</a></p>
+        <p>For privacy policy questions, data requests (access, deletion, portability), and GDPR inquiries.</p>
+      </div>
+
+      <div class="contact-card">
+        <h3>In-App Support</h3>
+        <p>You can also contact us directly from the GossHive app:</p>
+        <p><strong>Settings</strong> → <strong>Help</strong> → <strong>Contact Support</strong></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Response Times</h2>
+      <p>We aim to respond to all inquiries within:</p>
+      <ul style="margin: 12px 0 12px 22px; line-height: 1.7; font-size: 1.05rem;">
+        <li><strong>Support requests:</strong> 24-48 hours</li>
+        <li><strong>Privacy/GDPR requests:</strong> 30 days (as required by law)</li>
+        <li><strong>Urgent security issues:</strong> 12-24 hours</li>
+      </ul>
+      <p class="callout">
+        For account deletion requests, please visit <a href="https://gosshive.app/delete-account">gosshive.app/delete-account</a> or use the in-app deletion feature for immediate processing.
+      </p>
+    </section>
+
+    <section>
+      <h2>Other Resources</h2>
+      <ul style="margin: 12px 0 12px 22px; line-height: 1.7; font-size: 1.05rem;">
+        <li><a href="https://gosshive.app/privacy">Privacy Policy</a> - Learn how we handle your data</li>
+        <li><a href="https://gosshive.app/delete-account">Delete Account</a> - Instructions for account deletion</li>
+        <li><a href="https://gosshive.app">GossHive Homepage</a> - Back to main page</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
