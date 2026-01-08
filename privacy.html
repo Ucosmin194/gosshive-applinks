@@ -199,16 +199,15 @@
       <p><strong>Account Information:</strong></p>
       <ul>
         <li>Email address (for authentication and account recovery)</li>
-        <li>Username (display name)</li>
+        <li>Username (unique handle)</li>
         <li>Password (hashed, never stored in plain text)</li>
       </ul>
 
       <p><strong>Profile Information (optional unless noted):</strong></p>
       <ul>
-        <li>Display name</li>
+        <li>Display name (optional)</li>
         <li>Bio</li>
         <li>Profile photo</li>
-        <li>Hive memberships</li>
         <li>Location (optional)</li>
       </ul>
 
@@ -224,7 +223,7 @@
         <li>Images you upload</li>
         <li>Descriptions and comments</li>
         <li>Votes on posts</li>
-        <li>Direct messages</li>
+        <li>Direct messages (encrypted at rest)</li>
       </ul>
 
       <p><strong>Support Requests:</strong></p>
@@ -490,7 +489,7 @@
       <ul>
         <li><strong>Images are scanned</strong> by automated systems for safety</li>
         <li><strong>Metadata stored:</strong> Post ID, timestamps, vote counts</li>
-        <li><strong>Content deleted:</strong> Removed from systems within 30 days after verified deletion</li>
+        <li><strong>Content deleted:</strong> Removed immediately after confirmed deletion</li>
       </ul>
     </section>
 
@@ -511,7 +510,7 @@
       <ul>
         <li><strong>Primary Storage:</strong> EU region (via Supabase EU)</li>
         <li><strong>Google Services:</strong> May process data in the US (GDPR-compliant)</li>
-        <li><strong>Safeguards:</strong> Standard Contractual Clauses (SCCs)</li>
+        <li><strong>Safeguards:</strong> Our providers use SCCs or similar mechanisms where required</li>
       </ul>
 
       <h3>9.2 Non-EU Users</h3>
