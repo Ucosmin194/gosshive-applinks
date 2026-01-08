@@ -76,32 +76,34 @@
     }
 
     header {
-      display: grid;
-      gap: 16px;
-      justify-items: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      text-align: center;
       position: relative;
       z-index: 1;
     }
 
-    .logo-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      padding: 10px 16px 10px 10px;
-      border-radius: 999px;
-      background: rgba(47, 93, 89, 0.1);
-      border: 1px solid rgba(47, 93, 89, 0.2);
+    .app-icon {
+      width: 140px;
+      height: 140px;
+      border-radius: 32px;
+      object-fit: cover;
+      box-shadow:
+        0 32px 64px -32px rgba(209, 85, 42, 0.4),
+        0 8px 16px -8px rgba(47, 93, 89, 0.2),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(47, 93, 89, 0.15);
+      transition: transform 200ms ease, box-shadow 200ms ease;
     }
 
-    .app-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
-      object-fit: cover;
-      background: linear-gradient(135deg, #ffffff, #f6efe6);
-      box-shadow: 0 18px 36px -26px rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(47, 93, 89, 0.2);
-      padding: 8px;
+    .app-icon:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 40px 80px -32px rgba(209, 85, 42, 0.5),
+        0 12px 24px -8px rgba(47, 93, 89, 0.25),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
     }
 
     .eyebrow {
@@ -111,20 +113,22 @@
       font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
       color: var(--accent-2);
       margin: 0;
+      font-weight: 500;
     }
 
     h1 {
       margin: 0;
       font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
       font-size: clamp(2.8rem, 3.1vw + 1.2rem, 4rem);
+      line-height: 1.1;
     }
 
     .tagline {
       margin: 0;
       font-size: 1.22rem;
       color: var(--muted);
-      max-width: 680px;
-      line-height: 1.6;
+      max-width: 620px;
+      line-height: 1.65;
     }
 
     .status {
@@ -196,10 +200,14 @@
         padding: 38px 28px 32px;
       }
 
-      .logo-wrap {
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 22px;
+      .app-icon {
+        width: 110px;
+        height: 110px;
+        border-radius: 26px;
+      }
+
+      header {
+        gap: 22px;
       }
 
       .tagline {
@@ -211,12 +219,10 @@
 <body>
   <main>
     <header>
-      <div class="logo-wrap">
-        <img class="app-icon" src="app-icon.png" alt="GossHive app icon">
-        <div>
-          <p class="eyebrow">GossHive</p>
-          <h1>GossHive</h1>
-        </div>
+      <img class="app-icon" src="app-icon.png" alt="GossHive app icon">
+      <div>
+        <p class="eyebrow">GossHive</p>
+        <h1>GossHive</h1>
       </div>
       <p class="tagline">
         The brutally honest social app. Swipe to judge. Get judged. See what the
