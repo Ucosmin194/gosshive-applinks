@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GossHive Privacy Policy">
+  <title>GossHive Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --bg: #f5efe7;
+      --paper: #fffaf2;
+      --ink: #1d1b17;
+      --muted: #6a6258;
+      --accent: #d1552a;
+      --accent-2: #2f5d59;
+      --shadow: rgba(32, 24, 16, 0.12);
+      --ring: rgba(209, 85, 42, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Newsreader", Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(47, 93, 89, 0.16), transparent 38%),
+        radial-gradient(circle at 88% 18%, rgba(209, 85, 42, 0.16), transparent 42%),
+        linear-gradient(135deg, #f6ede4 0%, #f2f5ef 60%, #efe6dc 100%);
+      padding: 32px 20px 64px;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 24px;
+      padding: 42px 52px 56px;
+      box-shadow: 0 24px 60px -40px var(--shadow);
+      border: 1px solid rgba(47, 93, 89, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: -120px -120px auto auto;
+      height: 220px;
+      width: 220px;
+      background: radial-gradient(circle, rgba(209, 85, 42, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    header {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      color: var(--accent-2);
+      margin: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: clamp(2.2rem, 2.6vw + 1.2rem, 3.4rem);
+    }
+
+    .updated {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    section {
+      margin-top: 26px;
+      animation: rise 650ms ease both;
+    }
+
+    section:nth-of-type(2) { animation-delay: 80ms; }
+    section:nth-of-type(3) { animation-delay: 120ms; }
+    section:nth-of-type(4) { animation-delay: 160ms; }
+    section:nth-of-type(5) { animation-delay: 200ms; }
+
+    h2 {
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: 1.6rem;
+      margin: 0 0 12px;
+      color: var(--accent-2);
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 18px 0 8px;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    }
+
+    p {
+      margin: 0 0 12px;
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    ul {
+      margin: 0 0 14px 22px;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 1.03rem;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      background: rgba(209, 85, 42, 0.06);
+      border-radius: 12px;
+      margin: 16px 0 0;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 32px 26px 40px;
+      }
+
+      h1 {
+        font-size: clamp(1.9rem, 4vw + 1rem, 2.8rem);
+      }
+
+      p,
+      ul {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">GossHive</p>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last Updated: January 08, 2026</p>
+    </header>
+
+    <section>
+      <p>
+        GossHive ("we", "our", or "us") is committed to protecting your privacy. This Privacy
+        Policy explains how we collect, use, disclose, and safeguard your information when you use
+        our mobile application and our public website.
+      </p>
+      <p class="callout">
+        This policy is designed to comply with the EU General Data Protection Regulation (GDPR) and
+        other applicable privacy laws.
+      </p>
+    </section>
+
+    <section>
+      <h2>1. Information We Collect</h2>
+
+      <h3>1.1 Information You Provide</h3>
+      <p><strong>Account Information:</strong></p>
+      <ul>
+        <li>Email address (for authentication and account recovery)</li>
+        <li>Username (display name)</li>
+        <li>Password (hashed, never stored in plain text)</li>
+      </ul>
+
+      <p><strong>Profile Information (optional unless noted):</strong></p>
+      <ul>
+        <li>Display name</li>
+        <li>Bio</li>
+        <li>Profile photo</li>
+        <li>Hive memberships</li>
+        <li>Location (optional)</li>
+      </ul>
+
+      <p><strong>Social Sign-In (if you use Apple or Google):</strong></p>
+      <ul>
+        <li>Name and email from your provider</li>
+        <li>Provider user identifier (e.g., Apple user identifier)</li>
+        <li>Profile photo (Google only, if available)</li>
+      </ul>
+
+      <p><strong>Content You Post:</strong></p>
+      <ul>
+        <li>Images you upload</li>
+        <li>Descriptions and comments</li>
+        <li>Votes on posts</li>
+        <li>Direct messages</li>
+      </ul>
+
+      <p><strong>Support Requests:</strong></p>
+      <ul>
+        <li>Information you share when contacting support</li>
+      </ul>
+
+      <h3>1.2 Automatically Collected Information</h3>
+      <p><strong>Usage Data (with your consent):</strong></p>
+      <ul>
+        <li>App features you use</li>
+        <li>Posts you interact with</li>
+        <li>Time spent in the app</li>
+        <li>Screen views and in-app events</li>
+      </ul>
+
+      <p><strong>Diagnostics (with your consent):</strong></p>
+      <ul>
+        <li>App crash logs (Firebase Crashlytics)</li>
+        <li>Performance metrics and error reports</li>
+      </ul>
+
+      <p><strong>Device and Technical Data:</strong></p>
+      <ul>
+        <li>IP address and network information (for security and fraud prevention)</li>
+        <li>Device model, OS version, language, and app version</li>
+        <li>Device timezone (to personalize timestamps)</li>
+        <li>App instance identifiers and notification tokens (for push notifications)</li>
+      </ul>
+
+      <h3>1.3 Information from Third Parties</h3>
+      <p><strong>Google Cloud Vision API:</strong></p>
+      <ul>
+        <li>We send your uploaded images to Google Cloud Vision for content moderation</li>
+        <li>Google processes images to detect inappropriate content</li>
+        <li>Images are not stored by Google</li>
+      </ul>
+
+      <p><strong>Apple and Google Sign-In:</strong></p>
+      <ul>
+        <li>We receive your name and email if you choose those sign-in methods</li>
+      </ul>
+
+      <p><strong>Firebase Services (Google):</strong></p>
+      <ul>
+        <li>Firebase Analytics (if you consent)</li>
+        <li>Firebase Crashlytics (if you consent)</li>
+        <li>Firebase Cloud Messaging (push notifications)</li>
+        <li>Firebase Authentication (account management)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>2. How We Use Your Information</h2>
+
+      <h3>2.1 Service Delivery</h3>
+      <ul>
+        <li>Create and manage your account</li>
+        <li>Display your posts to other users</li>
+        <li>Enable voting and commenting</li>
+        <li>Facilitate direct messaging</li>
+        <li>Send push notifications (if enabled)</li>
+        <li>Provide customer support</li>
+      </ul>
+
+      <h3>2.2 Content Moderation</h3>
+      <ul>
+        <li>Automatically scan images for inappropriate content</li>
+        <li>Review flagged content manually</li>
+        <li>Enforce Community Guidelines</li>
+        <li>Prevent abuse and spam</li>
+      </ul>
+
+      <h3>2.3 Analytics and Improvement (with your consent)</h3>
+      <ul>
+        <li>Understand how users engage with the app</li>
+        <li>Identify popular features</li>
+        <li>Fix bugs and crashes</li>
+        <li>Improve app performance</li>
+      </ul>
+
+      <h3>2.4 Legal Compliance</h3>
+      <ul>
+        <li>Comply with legal obligations</li>
+        <li>Respond to law enforcement requests</li>
+        <li>Protect our rights and property</li>
+        <li>Prevent illegal activity</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Legal Basis for Processing (GDPR)</h2>
+      <p>We process your data based on:</p>
+
+      <h3>3.1 Consent</h3>
+      <ul>
+        <li><strong>Analytics:</strong> We only collect usage analytics if you explicitly consent</li>
+        <li><strong>Crash Reporting:</strong> We only collect crash diagnostics if you explicitly consent</li>
+        <li><strong>Push Notifications:</strong> Sent only if you enable them</li>
+        <li><strong>Withdrawal:</strong> You can withdraw consent anytime in Settings > Privacy</li>
+      </ul>
+
+      <h3>3.2 Contract Performance</h3>
+      <ul>
+        <li><strong>Account Management:</strong> Necessary to provide the service</li>
+        <li><strong>Content Delivery:</strong> Required to show posts to other users</li>
+        <li><strong>Moderation:</strong> Ensures a safe community environment</li>
+      </ul>
+
+      <h3>3.3 Legitimate Interest</h3>
+      <ul>
+        <li><strong>Security:</strong> Prevent fraud and abuse</li>
+        <li><strong>Service Improvement:</strong> Fix bugs and crashes</li>
+        <li><strong>Legal Defense:</strong> Protect against legal claims</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Data Sharing and Disclosure</h2>
+
+      <h3>4.1 We Share Data With:</h3>
+      <p><strong>Google Cloud Platform:</strong></p>
+      <ul>
+        <li><strong>Google Cloud Vision:</strong> Image content moderation</li>
+        <li><strong>Google Cloud Storage:</strong> Image hosting (via Supabase)</li>
+        <li><strong>Purpose:</strong> Content safety and storage</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+      </ul>
+
+      <p><strong>Firebase (Google):</strong></p>
+      <ul>
+        <li><strong>Firebase Analytics:</strong> Usage statistics (opt-in)</li>
+        <li><strong>Firebase Crashlytics:</strong> Crash reports (opt-in)</li>
+        <li><strong>Firebase Cloud Messaging:</strong> Push notifications</li>
+        <li><strong>Firebase Authentication:</strong> Account management</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></li>
+      </ul>
+
+      <p><strong>Apple:</strong></p>
+      <ul>
+        <li><strong>Sign in with Apple:</strong> Authentication</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></li>
+      </ul>
+
+      <p><strong>Google Sign-In:</strong></p>
+      <ul>
+        <li><strong>Google Sign-In:</strong> Authentication</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+      </ul>
+
+      <p><strong>Supabase:</strong></p>
+      <ul>
+        <li><strong>Database:</strong> Store posts, votes, messages</li>
+        <li><strong>Storage:</strong> Host uploaded images</li>
+        <li><strong>Authentication:</strong> Manage user accounts</li>
+        <li><strong>Data Location:</strong> EU region (GDPR-compliant)</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://supabase.com/privacy">https://supabase.com/privacy</a></li>
+      </ul>
+
+      <h3>4.2 We Do NOT:</h3>
+      <ul>
+        <li>Sell your data to third parties</li>
+        <li>Share your data for advertising</li>
+        <li>Track you across other apps or websites</li>
+        <li>Use your data for AI training without consent</li>
+      </ul>
+
+      <h3>4.3 Legal Disclosure</h3>
+      <p>We may disclose your information if required by:</p>
+      <ul>
+        <li>Court order or subpoena</li>
+        <li>Law enforcement request</li>
+        <li>Legal obligation</li>
+        <li>Protection of rights and safety</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Data Retention</h2>
+
+      <h3>5.1 Active Accounts</h3>
+      <ul>
+        <li><strong>Posts, comments, and profile data:</strong> Retained while your account is active or until you delete them</li>
+        <li><strong>Votes:</strong> Retained while your account is active to prevent abuse and maintain integrity</li>
+        <li><strong>Messages:</strong> Retained while your account is active or until you delete them</li>
+        <li><strong>Notification tokens:</strong> Retained while notifications are enabled</li>
+        <li><strong>Analytics and crash reports:</strong> Retained according to provider settings and deleted when no longer needed</li>
+      </ul>
+
+      <h3>5.2 Deleted Accounts</h3>
+      <ul>
+        <li><strong>Account Data:</strong> Deleted immediately after your confirmed deletion request</li>
+        <li><strong>Posts:</strong> Deleted or anonymized immediately after your confirmed request</li>
+        <li><strong>Votes:</strong> Deleted or anonymized where feasible to preserve community integrity</li>
+        <li><strong>Messages:</strong> Permanently deleted</li>
+      </ul>
+
+      <h3>5.3 Backups</h3>
+      <ul>
+        <li>Deleted data may persist in backups for up to 90 days</li>
+        <li>Backups are encrypted and access-controlled</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Your Rights (GDPR)</h2>
+
+      <h3>6.1 Right to Access</h3>
+      <p>You can request a copy of your data by emailing privacy@gosshive.app.</p>
+
+      <h3>6.2 Right to Rectification</h3>
+      <p>You can update your profile information in-app or contact us to correct inaccuracies.</p>
+
+      <h3>6.3 Right to Erasure ("Right to be Forgotten")</h3>
+      <p>
+        You can delete your account in-app via Settings &gt; Privacy &amp; Data &gt; Delete Account.
+        We delete your data immediately after you confirm the request. You can also visit
+        <a href="https://gosshive.app/delete-account">https://gosshive.app/delete-account</a> for
+        instructions. If you cannot access the app, email privacy@gosshive.app.
+      </p>
+
+      <h3>6.4 Right to Restrict Processing</h3>
+      <ul>
+        <li>Disable analytics in Settings > Privacy</li>
+        <li>Disable push notifications in your device settings</li>
+        <li>Contact us to restrict processing in specific cases</li>
+      </ul>
+
+      <h3>6.5 Right to Data Portability</h3>
+      <p>Request your data in a portable format by emailing privacy@gosshive.app.</p>
+
+      <h3>6.6 Right to Object</h3>
+      <ul>
+        <li>Opt out of analytics</li>
+        <li>Contact us at privacy@gosshive.app</li>
+      </ul>
+
+      <h3>6.7 Right to Lodge a Complaint</h3>
+      <p>If you are in the EU, you can file a complaint with your local Data Protection Authority:</p>
+      <p><a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en">https://edpb.europa.eu/about-edpb/about-edpb/members_en</a></p>
+    </section>
+
+    <section>
+      <h2>7. Data Security</h2>
+
+      <h3>7.1 Security Measures</h3>
+      <ul>
+        <li><strong>Encryption:</strong> All data encrypted in transit (TLS) and at rest (AES-256)</li>
+        <li><strong>Authentication:</strong> Secure password hashing (bcrypt)</li>
+        <li><strong>Access Control:</strong> Role-based access to databases</li>
+        <li><strong>Monitoring:</strong> Automated security alerts</li>
+        <li><strong>Audits:</strong> Regular security reviews</li>
+      </ul>
+
+      <h3>7.2 Message Encryption</h3>
+      <ul>
+        <li><strong>Direct Messages:</strong> Encrypted at rest using conversation-specific keys</li>
+        <li><strong>This is not end-to-end encryption</strong></li>
+        <li>We may access message content to provide the service or comply with legal obligations</li>
+      </ul>
+
+      <h3>7.3 Content Moderation</h3>
+      <ul>
+        <li><strong>Images are scanned</strong> by automated systems for safety</li>
+        <li><strong>Metadata stored:</strong> Post ID, timestamps, vote counts</li>
+        <li><strong>Content deleted:</strong> Removed from systems within 30 days after verified deletion</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Children's Privacy</h2>
+      <p>GossHive is <strong>not intended for users under 16 years old</strong>.</p>
+      <ul>
+        <li>We do not knowingly collect data from children</li>
+        <li>If we discover a user is under 16, we will delete their account</li>
+        <li>Parents can report underage users to: support@gosshive.app</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. International Data Transfers</h2>
+
+      <h3>9.1 EU Users</h3>
+      <ul>
+        <li><strong>Primary Storage:</strong> EU region (via Supabase EU)</li>
+        <li><strong>Google Services:</strong> May process data in the US (GDPR-compliant)</li>
+        <li><strong>Safeguards:</strong> Standard Contractual Clauses (SCCs)</li>
+      </ul>
+
+      <h3>9.2 Non-EU Users</h3>
+      <p>Data may be stored and processed in:</p>
+      <ul>
+        <li>European Union (primary)</li>
+        <li>United States (Firebase services)</li>
+        <li>Other regions as needed for service delivery</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>10. Cookies and Tracking</h2>
+
+      <h3>10.1 Cookies</h3>
+      <p>
+        We do <strong>not</strong> use cookies for advertising or cross-site tracking. Our public
+        website may use essential cookies or local storage for basic functionality.
+      </p>
+
+      <h3>10.2 Tracking</h3>
+      <p>We do <strong>not</strong> track you across other apps or websites.</p>
+      <p>Analytics are limited to:</p>
+      <ul>
+        <li>In-app behavior (if you consent)</li>
+        <li>No cross-app tracking</li>
+        <li>No advertising profiles</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>11. Analytics and Advertising</h2>
+
+      <h3>11.1 Analytics and Crash Reporting (Opt-In)</h3>
+      <p>If you consent, we collect:</p>
+      <ul>
+        <li>Which features you use</li>
+        <li>How long you spend in the app</li>
+        <li>App crashes and errors</li>
+        <li>Device type and OS version</li>
+      </ul>
+      <p><strong>You can opt out anytime in Settings > Privacy > Analytics.</strong></p>
+
+      <h3>11.2 Advertising</h3>
+      <p>GossHive currently has <strong>NO advertising</strong>.</p>
+      <p>If we add ads in the future:</p>
+      <ul>
+        <li>We will update this policy</li>
+        <li>We will ask for your consent</li>
+        <li>You can opt out of personalized ads</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>12. Third-Party Links</h2>
+      <p>GossHive may contain links to external websites (e.g., in user posts).</p>
+      <ul>
+        <li>We are not responsible for third-party privacy practices</li>
+        <li>Review their privacy policies before clicking</li>
+        <li>We do not track links you click</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>13. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy to reflect:</p>
+      <ul>
+        <li>New features</li>
+        <li>Legal changes</li>
+        <li>Security improvements</li>
+      </ul>
+
+      <h3>Notification</h3>
+      <p>We will notify you of significant changes via:</p>
+      <ul>
+        <li>In-app banner</li>
+        <li>Email (if provided)</li>
+        <li>App update notes</li>
+      </ul>
+
+      <h3>Acceptance</h3>
+      <p>Continued use after changes means you accept the updated policy.</p>
+    </section>
+
+    <section>
+      <h2>14. Contact Us</h2>
+
+      <h3>Data Controller</h3>
+      <p>GossHive<br>Ungureanu Cosmin-Constantin<br>42 Rue du Bastion Saint-Andre<br>Lille, 59800<br>France</p>
+
+      <h3>Privacy Questions</h3>
+      <ul>
+        <li><strong>Email:</strong> privacy@gosshive.app</li>
+        <li><strong>Support:</strong> support@gosshive.app</li>
+        <li><strong>In-app:</strong> Settings > Help > Contact Support</li>
+      </ul>
+
+      <h3>Data Protection Officer</h3>
+      <p>For GDPR inquiries, contact: privacy@gosshive.app</p>
+    </section>
+
+    <section>
+      <h2>15. Specific Notices by Region</h2>
+
+      <h3>15.1 European Union (GDPR)</h3>
+      <ul>
+        <li>Data Controller: GossHive</li>
+        <li>Legal Basis: Consent, Contract, Legitimate Interest</li>
+        <li>Data Transfers: Standard Contractual Clauses</li>
+        <li>Supervisory Authority: Your local DPA</li>
+      </ul>
+
+      <h3>15.2 California (CCPA)</h3>
+      <ul>
+        <li>We do not sell or share personal information</li>
+        <li>You can request access or deletion via privacy@gosshive.app</li>
+        <li>You can opt out of analytics in-app</li>
+      </ul>
+
+      <h3>15.3 United Kingdom (UK GDPR)</h3>
+      <ul>
+        <li>Data Controller: GossHive</li>
+        <li>Same rights as EU users</li>
+        <li>Supervisory Authority: <a href="https://ico.org.uk/make-a-complaint/">https://ico.org.uk/make-a-complaint/</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>16. Data Processing Details</h2>
+
+      <h3>16.1 Categories of Personal Data</h3>
+      <ul>
+        <li>Identity data (username, email)</li>
+        <li>Profile data (display name, bio, profile photo, location)</li>
+        <li>Content data (posts, comments, votes, messages)</li>
+        <li>Technical data (IP address, device info, app identifiers, notification tokens)</li>
+        <li>Usage data (analytics and diagnostics, if consented)</li>
+      </ul>
+
+      <h3>16.2 Recipients of Data</h3>
+      <ul>
+        <li>Supabase (database hosting)</li>
+        <li>Google Cloud (content moderation)</li>
+        <li>Firebase (analytics, crash reporting, push notifications)</li>
+        <li>Apple (Sign in with Apple)</li>
+        <li>Google (Sign-In)</li>
+        <li>Law enforcement (if legally required)</li>
+      </ul>
+
+      <h3>16.3 Retention Periods</h3>
+      <ul>
+        <li>Active account data: Until deletion</li>
+        <li>Deleted account data: Immediately after confirmed request</li>
+        <li>Analytics and crash reports: According to provider settings</li>
+        <li>Backups: Up to 90 days</li>
+      </ul>
+    </section>
+
+    <section>
+      <p><strong>By using GossHive, you acknowledge that you have read and understood this Privacy Policy.</strong></p>
+      <p><strong>If you do not agree, please do not use GossHive.</strong></p>
+      <p class="updated">Last Updated: January 08, 2026 | Version: 1.2</p>
+    </section>
+  </main>
+</body>
+</html>

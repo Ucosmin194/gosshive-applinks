@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GossHive Account Deletion">
+  <title>GossHive Account Deletion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --bg: #f5efe7;
+      --paper: #fffaf2;
+      --ink: #1d1b17;
+      --muted: #6a6258;
+      --accent: #d1552a;
+      --accent-2: #2f5d59;
+      --shadow: rgba(32, 24, 16, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Newsreader", Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 16% 12%, rgba(47, 93, 89, 0.16), transparent 38%),
+        radial-gradient(circle at 88% 16%, rgba(209, 85, 42, 0.18), transparent 42%),
+        linear-gradient(135deg, #f6ede4 0%, #f2f5ef 60%, #efe6dc 100%);
+      padding: 32px 20px 64px;
+    }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 24px;
+      padding: 40px 48px;
+      box-shadow: 0 24px 60px -40px var(--shadow);
+      border: 1px solid rgba(47, 93, 89, 0.12);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: clamp(2rem, 2.4vw + 1rem, 3rem);
+    }
+
+    h2 {
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent-2);
+      margin: 28px 0 10px;
+    }
+
+    p {
+      margin: 0 0 12px;
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    ul {
+      margin: 0 0 12px 22px;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 1.02rem;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      background: rgba(209, 85, 42, 0.06);
+      border-radius: 12px;
+      margin: 16px 0 0;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 30px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Delete Your GossHive Account</h1>
+    <p>If you want to delete your account and personal data, use the in-app deletion flow below.</p>
+
+    <div class="callout">
+      <p><strong>In-app deletion (fastest option):</strong></p>
+      <ul>
+        <li>Open GossHive</li>
+        <li>Go to Settings &gt; Privacy &amp; Data</li>
+        <li>Select Delete Account</li>
+        <li>Type DELETE to confirm</li>
+      </ul>
+      <p>Your account is deleted immediately after confirmation.</p>
+    </div>
+
+    <h2>Can't access the app?</h2>
+    <p>Email us and we will help you complete the request.</p>
+    <p><strong>Email:</strong> <a href="mailto:privacy@gosshive.app">privacy@gosshive.app</a></p>
+
+    <h2>What gets deleted</h2>
+    <ul>
+      <li>Your account profile and authentication record</li>
+      <li>Your posts, comments, messages, and notification tokens</li>
+      <li>Content that must remain for integrity is anonymized where feasible</li>
+    </ul>
+    <p>Backups may retain deleted data for up to 90 days.</p>
+
+    <h2>Data Controller</h2>
+    <p>GossHive<br>Ungureanu Cosmin-Constantin<br>42 Rue du Bastion Saint-Andre<br>Lille, 59800<br>France</p>
+
+    <p>
+      For privacy details, see the
+      <a href="https://gosshive.app/privacy">Privacy Policy</a>.
+    </p>
+  </main>
+</body>
+</html>
