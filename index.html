@@ -19,6 +19,7 @@
       --muted: #6a6258;
       --accent: #d1552a;
       --accent-2: #2f5d59;
+      --accent-3: #f0c56b;
       --shadow: rgba(32, 24, 16, 0.12);
       --ring: rgba(209, 85, 42, 0.25);
     }
@@ -33,7 +34,7 @@
       font-family: "Newsreader", Georgia, serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 12% 10%, rgba(47, 93, 89, 0.16), transparent 38%),
+        radial-gradient(circle at 12% 8%, rgba(47, 93, 89, 0.16), transparent 38%),
         radial-gradient(circle at 88% 18%, rgba(209, 85, 42, 0.16), transparent 42%),
         linear-gradient(135deg, #f6ede4 0%, #f2f5ef 60%, #efe6dc 100%);
       padding: 32px 20px 48px;
@@ -43,11 +44,11 @@
     }
 
     main {
-      width: min(960px, 100%);
+      width: min(980px, 100%);
       background: var(--paper);
-      border-radius: 24px;
-      padding: 48px 56px;
-      box-shadow: 0 24px 60px -40px var(--shadow);
+      border-radius: 28px;
+      padding: 56px 60px 50px;
+      box-shadow: 0 28px 70px -40px var(--shadow);
       border: 1px solid rgba(47, 93, 89, 0.12);
       position: relative;
       overflow: hidden;
@@ -58,16 +59,49 @@
       content: "";
       position: absolute;
       inset: -140px -120px auto auto;
+      height: 260px;
+      width: 260px;
+      background: radial-gradient(circle, rgba(209, 85, 42, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    main::after {
+      content: "";
+      position: absolute;
+      inset: auto auto -120px -120px;
       height: 240px;
       width: 240px;
-      background: radial-gradient(circle, rgba(209, 85, 42, 0.22), transparent 70%);
+      background: radial-gradient(circle, rgba(47, 93, 89, 0.2), transparent 70%);
       pointer-events: none;
     }
 
     header {
       display: grid;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 16px;
+      justify-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 16px 10px 10px;
+      border-radius: 999px;
+      background: rgba(47, 93, 89, 0.1);
+      border: 1px solid rgba(47, 93, 89, 0.2);
+    }
+
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #ffffff, #f6efe6);
+      box-shadow: 0 18px 36px -26px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(47, 93, 89, 0.2);
+      padding: 8px;
     }
 
     .eyebrow {
@@ -82,14 +116,15 @@
     h1 {
       margin: 0;
       font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      font-size: clamp(2.4rem, 2.7vw + 1.2rem, 3.6rem);
+      font-size: clamp(2.8rem, 3.1vw + 1.2rem, 4rem);
     }
 
     .tagline {
       margin: 0;
-      font-size: 1.15rem;
+      font-size: 1.22rem;
       color: var(--muted);
-      max-width: 640px;
+      max-width: 680px;
+      line-height: 1.6;
     }
 
     .status {
@@ -98,42 +133,19 @@
       gap: 8px;
       padding: 10px 18px;
       border-radius: 999px;
-      background: rgba(47, 93, 89, 0.12);
-      color: var(--accent-2);
+      background: rgba(240, 197, 107, 0.18);
+      color: #6a4c16;
       font-size: 0.95rem;
       font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
       width: fit-content;
-      margin-top: 8px;
     }
 
-    section {
-      display: grid;
-      gap: 14px;
-    }
-
-    .highlight {
-      padding: 18px 20px;
-      border-radius: 16px;
-      background: rgba(209, 85, 42, 0.06);
-      border: 1px solid rgba(209, 85, 42, 0.18);
-    }
-
-    .highlight h2 {
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      font-size: 1.2rem;
-      margin: 0 0 8px;
-      color: var(--accent-2);
-    }
-
-    .highlight p {
-      margin: 0;
-      line-height: 1.6;
-      font-size: 1.02rem;
-      color: var(--muted);
+    .status span {
+      font-size: 1rem;
     }
 
     footer {
-      width: min(960px, 100%);
+      width: min(980px, 100%);
       margin-top: 24px;
       margin-bottom: auto;
       display: flex;
@@ -147,8 +159,23 @@
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 14px;
       justify-content: center;
+    }
+
+    .footer-links a {
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: 1px solid rgba(209, 85, 42, 0.3);
+      background: rgba(209, 85, 42, 0.08);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus {
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px -20px rgba(0, 0, 0, 0.4);
     }
 
     a {
@@ -158,24 +185,25 @@
       font-size: 0.95rem;
     }
 
-    a:hover,
-    a:focus {
-      text-decoration: underline;
-    }
-
     a:focus-visible {
       outline: 2px solid var(--ring);
       outline-offset: 3px;
-      border-radius: 6px;
+      border-radius: 999px;
     }
 
     @media (max-width: 720px) {
       main {
-        padding: 32px 26px;
+        padding: 38px 28px 32px;
+      }
+
+      .logo-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 22px;
       }
 
       .tagline {
-        font-size: 1.05rem;
+        font-size: 1.08rem;
       }
     }
   </style>
@@ -183,24 +211,19 @@
 <body>
   <main>
     <header>
-      <p class="eyebrow">GossHive</p>
-      <h1>Join the Buzz</h1>
+      <div class="logo-wrap">
+        <img class="app-icon" src="app-icon.png" alt="GossHive app icon">
+        <div>
+          <p class="eyebrow">GossHive</p>
+          <h1>GossHive</h1>
+        </div>
+      </div>
       <p class="tagline">
-        A community-first space for honest feedback, real conversations, and shared
-        instincts.
+        The brutally honest social app. Swipe to judge. Get judged. See what the
+        hive really thinks.
       </p>
       <div class="status">Launching soon on iOS and Android</div>
     </header>
-
-    <section>
-      <div class="highlight">
-        <h2>App Links Hub</h2>
-        <p>
-          This page hosts GossHive privacy, deletion, and support links for app store
-          requirements and deep link verification.
-        </p>
-      </div>
-    </section>
   </main>
 
   <footer>
