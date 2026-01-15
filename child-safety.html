@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GossHive Child Safety Standards - Our commitment to preventing child sexual abuse and exploitation">
+  <title>GossHive Child Safety Standards</title>
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <link rel="apple-touch-icon" href="app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --bg: #f5efe7;
+      --paper: #fffaf2;
+      --ink: #1d1b17;
+      --muted: #6a6258;
+      --accent: #d1552a;
+      --accent-2: #2f5d59;
+      --shadow: rgba(32, 24, 16, 0.12);
+      --ring: rgba(209, 85, 42, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Newsreader", Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(47, 93, 89, 0.16), transparent 38%),
+        radial-gradient(circle at 88% 18%, rgba(209, 85, 42, 0.16), transparent 42%),
+        linear-gradient(135deg, #f6ede4 0%, #f2f5ef 60%, #efe6dc 100%);
+      padding: 32px 20px 64px;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 24px;
+      padding: 42px 52px 56px;
+      box-shadow: 0 24px 60px -40px var(--shadow);
+      border: 1px solid rgba(47, 93, 89, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: -120px -120px auto auto;
+      height: 220px;
+      width: 220px;
+      background: radial-gradient(circle, rgba(209, 85, 42, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    header {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .logo-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .app-icon-small {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow:
+        0 12px 24px -12px rgba(209, 85, 42, 0.35),
+        0 4px 8px -4px rgba(47, 93, 89, 0.2);
+      border: 1px solid rgba(47, 93, 89, 0.15);
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      color: var(--accent-2);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: clamp(2.2rem, 2.6vw + 1.2rem, 3.4rem);
+    }
+
+    .updated {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    section {
+      margin-top: 26px;
+      animation: rise 650ms ease both;
+    }
+
+    section:nth-of-type(2) { animation-delay: 80ms; }
+    section:nth-of-type(3) { animation-delay: 120ms; }
+    section:nth-of-type(4) { animation-delay: 160ms; }
+    section:nth-of-type(5) { animation-delay: 200ms; }
+    section:nth-of-type(6) { animation-delay: 240ms; }
+    section:nth-of-type(7) { animation-delay: 280ms; }
+
+    h2 {
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      font-size: 1.6rem;
+      margin: 0 0 12px;
+      color: var(--accent-2);
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 18px 0 8px;
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    }
+
+    p {
+      margin: 0 0 12px;
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    ul {
+      margin: 0 0 14px 22px;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 1.03rem;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      background: rgba(209, 85, 42, 0.06);
+      border-radius: 12px;
+      margin: 16px 0 0;
+    }
+
+    .callout-important {
+      border-left: 3px solid var(--accent-2);
+      padding: 10px 14px;
+      background: rgba(47, 93, 89, 0.06);
+      border-radius: 12px;
+      margin: 16px 0 0;
+    }
+
+    .zero-tolerance {
+      background: rgba(209, 85, 42, 0.08);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+
+    .zero-tolerance p {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .contact-card {
+      background: rgba(47, 93, 89, 0.05);
+      border: 1px solid rgba(47, 93, 89, 0.15);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 16px;
+    }
+
+    .contact-card h3 {
+      margin: 0 0 12px;
+      color: var(--accent-2);
+    }
+
+    .contact-card p {
+      margin: 6px 0;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 32px 26px 40px;
+      }
+
+      h1 {
+        font-size: clamp(1.9rem, 4vw + 1rem, 2.8rem);
+      }
+
+      p,
+      ul {
+        font-size: 1rem;
+      }
+
+      .zero-tolerance {
+        padding: 16px 20px;
+      }
+
+      .contact-card {
+        padding: 20px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="logo-header">
+        <img class="app-icon-small" src="app-icon.png" alt="GossHive app icon">
+        <p class="eyebrow">GossHive</p>
+      </div>
+      <h1>Child Safety Standards</h1>
+      <p class="updated">Last Updated: January 15, 2026</p>
+    </header>
+
+    <section>
+      <p>
+        GossHive is committed to creating a safe environment for all users and takes the prevention of
+        child sexual abuse and exploitation (CSAE) extremely seriously. This document outlines our
+        standards, policies, and practices to protect children and prevent the distribution of child
+        sexual abuse material (CSAM) on our platform.
+      </p>
+      <div class="zero-tolerance">
+        <p>We have a zero-tolerance policy for any content that sexually exploits or endangers children.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>1. Age Requirements</h2>
+      <p>GossHive is intended for users aged 16 and older.</p>
+      <ul>
+        <li>Users must confirm they are at least 16 years old during registration</li>
+        <li>We do not knowingly allow users under 16 to create accounts</li>
+        <li>Accounts discovered to belong to users under 16 are immediately terminated</li>
+        <li>Parents and guardians can report underage users to <a href="mailto:support@gosshive.app">support@gosshive.app</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>2. Prohibited Content</h2>
+      <p>The following content is strictly prohibited and will result in immediate action:</p>
+      <ul>
+        <li><strong>Child Sexual Abuse Material (CSAM):</strong> Any imagery depicting minors in sexual situations</li>
+        <li><strong>Child exploitation:</strong> Content that sexualizes, endangers, or exploits children in any way</li>
+        <li><strong>Grooming behavior:</strong> Adults attempting to establish inappropriate relationships with minors</li>
+        <li><strong>Sextortion of minors:</strong> Any attempts to coerce or blackmail minors for sexual content</li>
+        <li><strong>Child trafficking:</strong> Any content promoting or facilitating trafficking of minors</li>
+        <li><strong>AI-generated CSAM:</strong> Synthetic or AI-generated imagery depicting child exploitation</li>
+      </ul>
+      <p class="callout">
+        This prohibition applies to all content including posts, comments, profile images, direct messages, and any other user-generated content on our platform.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Prevention Measures</h2>
+
+      <h3>3.1 Automated Detection</h3>
+      <ul>
+        <li><strong>Image scanning:</strong> All uploaded images are automatically scanned using Google Cloud Vision API for inappropriate content</li>
+        <li><strong>Content filtering:</strong> Automated systems detect and flag potentially harmful content before publication</li>
+        <li><strong>Behavioral analysis:</strong> We monitor for patterns indicative of grooming or exploitation behavior</li>
+      </ul>
+
+      <h3>3.2 Human Moderation</h3>
+      <ul>
+        <li>Trained moderators review flagged content</li>
+        <li>User reports are prioritized and reviewed promptly</li>
+        <li>Moderators are trained to recognize and escalate CSAE indicators</li>
+      </ul>
+
+      <h3>3.3 User Reporting</h3>
+      <ul>
+        <li>In-app reporting tools allow users to flag concerning content</li>
+        <li>Reports related to child safety are treated with highest priority</li>
+        <li>Anonymous reporting is available</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Detection and Response</h2>
+
+      <h3>4.1 When CSAM is Detected</h3>
+      <p>Upon detection or report of suspected CSAM, we immediately:</p>
+      <ul>
+        <li><strong>Remove the content:</strong> Suspected material is removed from our platform immediately</li>
+        <li><strong>Suspend the account:</strong> The offending account is immediately suspended</li>
+        <li><strong>Cooperate with law enforcement:</strong> We provide full cooperation with any investigation</li>
+      </ul>
+
+      <h3>4.2 Reporting to Authorities</h3>
+      <p>We comply with all legal obligations to report CSAM, including:</p>
+      <ul>
+        <li><strong>Local law enforcement:</strong> We cooperate with law enforcement agencies worldwide</li>
+        <li><strong>Preservation requests:</strong> We honor all valid legal preservation requests</li>
+      </ul>
+      <p class="callout-important">
+        We are committed to transparency with law enforcement while protecting user privacy for non-violating content.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. Account Termination</h2>
+      <p>Accounts found to be involved in CSAE are subject to:</p>
+      <ul>
+        <li><strong>Immediate permanent ban:</strong> No warnings or second chances</li>
+        <li><strong>No appeal:</strong> Bans for CSAE violations are not subject to appeal</li>
+        <li><strong>Cross-platform reporting:</strong> Information may be shared with other platforms to prevent repeat offenses</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Staff Training and Compliance</h2>
+      <ul>
+        <li>All staff with content moderation responsibilities receive specialized training on CSAE identification</li>
+        <li>Regular training updates ensure awareness of emerging threats and tactics</li>
+        <li>Clear escalation procedures ensure proper handling of sensitive cases</li>
+        <li>Staff mental health support is provided for those handling disturbing content</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Contact Information</h2>
+      <p>For questions about our child safety policies or to report concerns:</p>
+
+      <div class="contact-card">
+        <h3>Report Child Safety Concerns</h3>
+        <p><strong>Email:</strong> <a href="mailto:support@gosshive.app">support@gosshive.app</a></p>
+        <p>Use subject line: "Child Safety Report" for priority handling</p>
+        <p><strong>In-app:</strong> Use the report function on any content or profile</p>
+      </div>
+
+      <div class="contact-card">
+        <h3>Designated Child Safety Contact</h3>
+        <p><strong>Email:</strong> <a href="mailto:support@gosshive.app">support@gosshive.app</a></p>
+        <p>For inquiries from law enforcement, regulatory bodies, and app store compliance teams regarding our CSAM prevention practices.</p>
+      </div>
+
+      <div class="contact-card">
+        <h3>External Resources</h3>
+        <p><strong>NCMEC CyberTipline:</strong> <a href="https://www.missingkids.org/gethelpnow/cybertipline" target="_blank" rel="noopener">www.missingkids.org/gethelpnow/cybertipline</a></p>
+        <p><strong>Internet Watch Foundation:</strong> <a href="https://www.iwf.org.uk/" target="_blank" rel="noopener">www.iwf.org.uk</a></p>
+        <p>If you encounter CSAM anywhere online, please report it directly to these organizations.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>8. Policy Updates</h2>
+      <p>
+        We regularly review and update our child safety practices to address emerging threats and
+        align with best practices. Significant changes to this policy will be announced through
+        our app and website.
+      </p>
+    </section>
+
+    <section>
+      <h2>9. Related Policies</h2>
+      <ul>
+        <li><a href="https://gosshive.app/privacy">Privacy Policy</a> - How we handle user data</li>
+        <li><a href="https://gosshive.app/contact">Contact Us</a> - Get in touch with our team</li>
+        <li><a href="https://gosshive.app">GossHive Homepage</a> - Back to main page</li>
+      </ul>
+      <p class="updated">Last Updated: January 15, 2026 | Version: 1.0</p>
+    </section>
+  </main>
+</body>
+</html>
