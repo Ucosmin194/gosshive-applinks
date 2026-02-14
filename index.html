@@ -174,16 +174,26 @@
 
     .store-badge {
       transition: transform 150ms ease, opacity 150ms ease;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
     }
 
     .store-badge img {
       height: 50px;
       width: auto;
+      display: block;
+    }
+
+    .store-badge--google {
+      overflow: hidden;
     }
 
     .store-badge--google img {
-      height: 58px;
+      height: 64px;
+      margin-top: -7px;
+      margin-bottom: -7px;
     }
 
     .store-badge:hover,
