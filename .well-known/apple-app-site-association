@@ -1,19 +1,35 @@
 {
   "applinks": {
     "apps": [],
-    "details": [{
-      "appID": "36AK3Y5T2H.app.gosshive",
-      "paths": [
-        "/post/*",
-        "/profile/*",
-        "/hive/*",
-        "/auth/*",
-        "/reset-password*",
-        "/"
-      ]
-    }]
+    "details": [
+      {
+        "appID": "36AK3Y5T2H.app.gosshive",
+        "paths": [
+          "/post/*",
+          "/profile/*",
+          "/hive/*",
+          "/auth/*",
+          "/reset-password*",
+          "/"
+        ]
+      },
+      {
+        "appID": "36AK3Y5T2H.app.gosshive.dev",
+        "paths": [
+          "/post/*",
+          "/profile/*",
+          "/hive/*",
+          "/auth/*",
+          "/reset-password*",
+          "/"
+        ]
+      }
+    ]
   },
   "webcredentials": {
-    "apps": ["36AK3Y5T2H.app.gosshive"]
+    "apps": [
+      "36AK3Y5T2H.app.gosshive",
+      "36AK3Y5T2H.app.gosshive.dev"
+    ]
   }
 }
