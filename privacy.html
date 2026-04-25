@@ -201,7 +201,7 @@
         <p class="eyebrow">GossHive</p>
       </div>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last Updated: March 30, 2026</p>
+      <p class="updated">Last Updated: April 25, 2026</p>
     </header>
 
     <section>
@@ -279,6 +279,14 @@
         <li>App instance identifiers and notification tokens (for push notifications)</li>
       </ul>
 
+      <p><strong>Install Attribution Data (legitimate interest basis):</strong></p>
+      <ul>
+        <li>Which channel you used to discover and install the app (e.g., search, social media, referral link)</li>
+        <li>Campaign name, if you arrived via a marketing campaign</li>
+        <li>Whether your install was organic (direct discovery) or prompted by a promotion</li>
+        <li>This data is recorded once at install and never updated</li>
+      </ul>
+
       <h3>1.3 Information from Third Parties</h3>
       <p><strong>Google Cloud Vision API:</strong></p>
       <ul>
@@ -298,6 +306,14 @@
         <li>Firebase Crashlytics (anonymized, opt-out available in Settings)</li>
         <li>Firebase Cloud Messaging (push notifications)</li>
         <li>Firebase Authentication (account management)</li>
+      </ul>
+
+      <p><strong>AppsFlyer (install attribution):</strong></p>
+      <ul>
+        <li>We use AppsFlyer to understand which channels drive app installs</li>
+        <li>AppsFlyer receives limited device and install-event data to identify your acquisition source</li>
+        <li>On iOS, we do not request access to your Advertising Identifier (IDFA); attribution uses Apple's privacy-preserving SKAN framework instead</li>
+        <li>Privacy Policy: <a href="https://www.appsflyer.com/legal/privacy-policy/">https://www.appsflyer.com/legal/privacy-policy/</a></li>
       </ul>
     </section>
 
@@ -396,6 +412,15 @@
       <ul>
         <li><strong>Google Sign-In:</strong> Authentication</li>
         <li><strong>Privacy Policy:</strong> <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+      </ul>
+
+      <p><strong>AppsFlyer:</strong></p>
+      <ul>
+        <li><strong>Install Attribution:</strong> Identify which channel or campaign led to an install</li>
+        <li><strong>Data sent:</strong> device type, OS, install timestamp, acquisition source</li>
+        <li><strong>iOS:</strong> No IDFA used; attribution uses Apple's SKAN privacy-preserving framework</li>
+        <li><strong>Data Location:</strong> US (AppsFlyer complies with GDPR via Standard Contractual Clauses)</li>
+        <li><strong>Privacy Policy:</strong> <a href="https://www.appsflyer.com/legal/privacy-policy/">https://www.appsflyer.com/legal/privacy-policy/</a></li>
       </ul>
 
       <p><strong>Supabase:</strong></p>
@@ -563,6 +588,7 @@
         <li>No cross-app tracking</li>
         <li>No advertising profiles</li>
       </ul>
+      <p><strong>Install attribution</strong> (via AppsFlyer) records how you discovered the app at install time. This is a one-time measurement, not ongoing tracking across other apps or websites.</p>
     </section>
 
     <section>
@@ -585,7 +611,16 @@
       </ul>
       <p><strong>You can opt out anytime in Settings > Privacy > Analytics.</strong></p>
 
-      <h3>11.2 Advertising</h3>
+      <h3>11.2 Install Attribution (Legitimate Interest)</h3>
+      <p>We use AppsFlyer to measure which marketing channels drive app installs. This is a one-time measurement at install — not ongoing tracking.</p>
+      <ul>
+        <li><strong>Data collected:</strong> acquisition source, campaign name, install type (organic/paid)</li>
+        <li><strong>iOS:</strong> No IDFA is used. Attribution uses Apple's privacy-preserving SKAN framework</li>
+        <li><strong>Stored in your account:</strong> Acquisition channel is saved to your user profile (linked to your user ID) to help us understand our user base</li>
+        <li><strong>Retention:</strong> Attribution data is retained while your account is active and deleted when you delete your account</li>
+      </ul>
+
+      <h3>11.3 Advertising</h3>
       <p>GossHive currently has <strong>NO advertising</strong>.</p>
       <p>If we add ads in the future:</p>
       <ul>
@@ -679,6 +714,7 @@
         <li>Content data (posts, comments, votes, messages)</li>
         <li>Technical data (IP address, device info, app identifiers, notification tokens)</li>
         <li>Usage data (analytics and diagnostics, anonymized)</li>
+        <li>Acquisition data (install source, campaign name — linked to your account, recorded once at install)</li>
       </ul>
 
       <h3>16.2 Recipients of Data</h3>
@@ -686,6 +722,7 @@
         <li>Supabase (database hosting)</li>
         <li>Google Cloud (content moderation)</li>
         <li>Firebase (anonymized analytics, anonymized crash reporting, push notifications)</li>
+        <li>AppsFlyer (install attribution)</li>
         <li>Apple (Sign in with Apple)</li>
         <li>Google (Sign-In)</li>
         <li>Law enforcement (if legally required)</li>
@@ -697,6 +734,7 @@
         <li>Active account data: Until deletion</li>
         <li>Deleted account data: Immediately after confirmed request</li>
         <li>Analytics and crash reports: Automatically anonymized by Firebase (60 days for raw data, no personal data retained)</li>
+        <li>Acquisition attribution data: Retained while your account is active; deleted with your account</li>
         <li>Backups: Up to 90 days</li>
       </ul>
     </section>
@@ -704,7 +742,7 @@
     <section>
       <p><strong>By using GossHive, you acknowledge that you have read and understood this Privacy Policy.</strong></p>
       <p><strong>If you do not agree, please do not use GossHive.</strong></p>
-      <p class="updated">Last Updated: March 30, 2026 | Version: 1.3</p>
+      <p class="updated">Last Updated: April 25, 2026 | Version: 1.4</p>
     </section>
   </main>
 </body>
