@@ -3,343 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GossHive app links, privacy, and account deletion resources.">
-  <title>GossHive</title>
-  <link rel="icon" type="image/png" href="app-icon.png">
-  <link rel="apple-touch-icon" href="app-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Space+Grotesk:wght@500;700&display=swap"
-    rel="stylesheet"
-  >
-  <style>
-    :root {
-      --bg: #f5efe7;
-      --paper: #fffaf2;
-      --ink: #1d1b17;
-      --muted: #6a6258;
-      --accent: #d1552a;
-      --accent-2: #2f5d59;
-      --accent-3: #f0c56b;
-      --shadow: rgba(32, 24, 16, 0.12);
-      --ring: rgba(209, 85, 42, 0.25);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Newsreader", Georgia, serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(47, 93, 89, 0.16), transparent 38%),
-        radial-gradient(circle at 88% 18%, rgba(209, 85, 42, 0.16), transparent 42%),
-        linear-gradient(135deg, #f6ede4 0%, #f2f5ef 60%, #efe6dc 100%);
-      padding: 32px 20px 48px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    main {
-      width: min(980px, 100%);
-      background: var(--paper);
-      border-radius: 28px;
-      padding: 56px 60px 50px;
-      box-shadow: 0 28px 70px -40px var(--shadow);
-      border: 1px solid rgba(47, 93, 89, 0.12);
-      position: relative;
-      overflow: hidden;
-      margin-top: auto;
-    }
-
-    main::before {
-      content: "";
-      position: absolute;
-      inset: -140px -120px auto auto;
-      height: 260px;
-      width: 260px;
-      background: radial-gradient(circle, rgba(209, 85, 42, 0.22), transparent 70%);
-      pointer-events: none;
-    }
-
-    main::after {
-      content: "";
-      position: absolute;
-      inset: auto auto -120px -120px;
-      height: 240px;
-      width: 240px;
-      background: radial-gradient(circle, rgba(47, 93, 89, 0.2), transparent 70%);
-      pointer-events: none;
-    }
-
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 28px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .app-icon {
-      width: 140px;
-      height: 140px;
-      border-radius: 32px;
-      object-fit: cover;
-      box-shadow:
-        0 32px 64px -32px rgba(209, 85, 42, 0.4),
-        0 8px 16px -8px rgba(47, 93, 89, 0.2),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-      border: 1px solid rgba(47, 93, 89, 0.15);
-      transition: transform 200ms ease, box-shadow 200ms ease;
-    }
-
-    .app-icon:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow:
-        0 40px 80px -32px rgba(209, 85, 42, 0.5),
-        0 12px 24px -8px rgba(47, 93, 89, 0.25),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-    }
-
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.72rem;
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      color: var(--accent-2);
-      margin: 0;
-      font-weight: 500;
-    }
-
-    h1 {
-      margin: 0;
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      font-size: clamp(2.8rem, 3.1vw + 1.2rem, 4rem);
-      line-height: 1.1;
-    }
-
-    .tagline {
-      margin: 0;
-      font-size: 1.22rem;
-      color: var(--muted);
-      max-width: 620px;
-      line-height: 1.65;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: rgba(240, 197, 107, 0.18);
-      color: #6a4c16;
-      font-size: 0.95rem;
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      width: fit-content;
-    }
-
-    .status span {
-      font-size: 1rem;
-    }
-
-    .download-section {
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .download-text {
-      margin: 0;
-      font-size: 1.05rem;
-      color: var(--muted);
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-    }
-
-    .store-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .store-badge {
-      transition: transform 150ms ease, opacity 150ms ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 0;
-    }
-
-    .store-badge img {
-      height: 60px;
-      width: auto;
-      display: block;
-    }
-
-    .store-badge:hover,
-    .store-badge:focus {
-      transform: translateY(-2px);
-      opacity: 0.9;
-    }
-
-    .store-badge:focus-visible {
-      outline: 2px solid var(--ring);
-      outline-offset: 4px;
-      border-radius: 8px;
-    }
-
-    footer {
-      width: min(980px, 100%);
-      margin-top: 24px;
-      margin-bottom: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-    }
-
-    .footer-links a {
-      border-radius: 999px;
-      padding: 10px 18px;
-      border: 1px solid rgba(209, 85, 42, 0.3);
-      background: rgba(209, 85, 42, 0.08);
-      transition: transform 150ms ease, box-shadow 150ms ease;
-    }
-
-    .footer-links a:hover,
-    .footer-links a:focus {
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px -20px rgba(0, 0, 0, 0.4);
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      font-size: 0.95rem;
-    }
-
-    a:focus-visible {
-      outline: 2px solid var(--ring);
-      outline-offset: 3px;
-      border-radius: 999px;
-    }
-
-    @media (max-width: 720px) {
-      main {
-        padding: 38px 28px 32px;
+  <title>GossHive: red flag or green flag?</title>
+  <meta name="description" content="GossHive is the brutally honest social app. Post a photo, swipe to judge, and see what the hive really thinks.">
+  <meta name="theme-color" content="#ffbd59">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GossHive">
+  <meta property="og:title" content="GossHive: red flag or green flag?">
+  <meta property="og:description" content="The brutally honest social app. Post a photo, swipe to judge, and see what the hive really thinks.">
+  <meta property="og:url" content="https://gosshive.app/">
+  <meta property="og:image" content="https://gosshive.app/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    /* Pick the hive before first paint: After Dark from 21:00 to 04:00 local time, as in the app. */
+    (function () {
+      var hive = null;
+      try { hive = sessionStorage.getItem('gh-hive'); } catch (e) {}
+      if (hive !== 'gut' && hive !== 'dark') {
+        var h = new Date().getHours();
+        hive = (h >= 21 || h < 4) ? 'dark' : 'gut';
       }
-
-      .app-icon {
-        width: 110px;
-        height: 110px;
-        border-radius: 26px;
-      }
-
-      header {
-        gap: 22px;
-      }
-
-      .tagline {
-        font-size: 1.08rem;
-      }
-    }
-  </style>
+      var root = document.documentElement;
+      root.dataset.hive = hive;
+      root.classList.add('js');
+    })();
+  </script>
 </head>
 <body>
-  <main>
-    <header>
-      <img class="app-icon" src="app-icon.png" alt="GossHive app icon">
-      <h1>GossHive</h1>
-      <p class="tagline">
-        The brutally honest social app. Swipe to judge. Get judged. See what the
-        hive really thinks.
-      </p>
+  <header class="nav nav--over wrap">
+      <a class="brand" href="./" aria-label="GossHive home">
+        <span class="brand-tile"><img src="assets/bee.webp" alt="" width="234" height="256"></span>
+        <span>GossHive</span>
+      </a>
+      <div class="seg" role="group" aria-label="Choose a hive for this page">
+        <button type="button" data-set-hive="gut" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3 7 7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></svg>
+          <span class="seg-label">Gut Check</span>
+        </button>
+        <button type="button" data-set-hive="dark" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.6 14.6A8.6 8.6 0 0 1 9.4 3.4a.7.7 0 0 0-.9-.9 9.9 9.9 0 1 0 13 13 .7.7 0 0 0-.9-.9z"/></svg>
+          <span class="seg-label">After Dark</span>
+        </button>
+      </div>
+  </header>
 
-      <!-- App Store Download Links -->
-      <div class="download-section" id="downloadSection">
-        <p class="download-text">Don't have the app yet?</p>
-        <div class="store-buttons">
-          <a href="https://apps.apple.com/app/gosshive/id6757358951"
-             id="appStoreLink"
-             class="store-badge"
-             aria-label="Download on the App Store"
-             style="display: none;">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
-                 alt="Download on the App Store">
+  <main>
+  <div class="hero" id="top">
+    <div class="hero-grid wrap">
+      <div class="hero-copy">
+        <h1 class="hero-title display">
+          <span class="line t-red">Red flag</span>
+          <span class="line">or <span class="t-green">green</span></span>
+          <span class="line t-green">flag?</span>
+        </h1>
+        <p class="hero-sub">GossHive is the brutally honest social app. Post a photo, swipe to judge, and see what the hive really thinks.</p>
+        <div class="stores" id="get">
+          <a class="store" data-store="ios" href="https://apps.apple.com/app/gosshive/id6757358951">
+            <span class="store-small">Download on the</span>
+            <span class="store-big">App Store</span>
           </a>
-          <a href="https://play.google.com/store/apps/details?id=app.gosshive"
-             id="playStoreLink"
-             class="store-badge"
-             aria-label="Get it on Google Play"
-             style="display: none;">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                 alt="Get it on Google Play">
+          <a class="store" data-store="android" href="https://play.google.com/store/apps/details?id=app.gosshive&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dlanding">
+            <span class="store-small">Get it on</span>
+            <span class="store-big">Google Play</span>
           </a>
         </div>
       </div>
-    </header>
+
+      <div class="stage">
+        <section class="judge" aria-labelledby="judge-title">
+          <div class="hexagon" aria-hidden="true"></div>
+          <h2 class="sr-only" id="judge-title">Warm-up round: judge five cards</h2>
+
+          <div class="deck" id="deck" tabindex="0" role="group" aria-label="Card deck. Left arrow votes red flag, right arrow votes green flag.">
+            <div class="bee" aria-hidden="true">
+              <div class="bee-body" id="bee">
+                <img src="assets/bee-sticker.webp" alt="" width="593" height="640">
+                <span class="pupil pupil--l"></span>
+                <span class="pupil pupil--r"></span>
+              </div>
+            </div>
+
+            <ol class="cards">
+              <li class="card" data-pos="0">
+                <p class="card-count">1 of 5</p>
+                <p class="card-text">Replies to a long message with “k”.</p>
+                <p class="card-hint">Swipe left for red, right for green.</p>
+                <span class="stamp stamp--green" aria-hidden="true">Green flag</span>
+                <span class="stamp stamp--red" aria-hidden="true">Red flag</span>
+              </li>
+              <li class="card" data-pos="1">
+                <p class="card-count">2 of 5</p>
+                <p class="card-text">Returns the shopping cart. Every time.</p>
+                <span class="stamp stamp--green" aria-hidden="true">Green flag</span>
+                <span class="stamp stamp--red" aria-hidden="true">Red flag</span>
+              </li>
+              <li class="card" data-pos="2">
+                <p class="card-count">3 of 5</p>
+                <p class="card-text">Claps when the plane lands.</p>
+                <span class="stamp stamp--green" aria-hidden="true">Green flag</span>
+                <span class="stamp stamp--red" aria-hidden="true">Red flag</span>
+              </li>
+              <li class="card" data-pos="deep">
+                <p class="card-count">4 of 5</p>
+                <p class="card-text">Still shares a streaming login with an ex.</p>
+                <span class="stamp stamp--green" aria-hidden="true">Green flag</span>
+                <span class="stamp stamp--red" aria-hidden="true">Red flag</span>
+              </li>
+              <li class="card" data-pos="deep">
+                <p class="card-count">5 of 5</p>
+                <p class="card-text">Remembers your coffee order after one date.</p>
+                <span class="stamp stamp--green" aria-hidden="true">Green flag</span>
+                <span class="stamp stamp--red" aria-hidden="true">Red flag</span>
+              </li>
+              <li class="card card--result" id="result" data-pos="deep" aria-hidden="true">
+                <p class="card-count">Your verdict</p>
+                <p class="result-title" id="resultTitle">Split decision.</p>
+                <div class="ratio" id="resultBar" role="img" aria-label="Your split between red and green flags"></div>
+                <p class="result-tally" id="resultTally"></p>
+                <p class="result-note">That was the warm-up. In the app, the hive judges real photos.</p>
+                <div class="result-actions">
+                  <a class="btn btn--primary" id="resultGet" href="#get">Get the app</a>
+                  <button class="btn btn--ghost" id="again" type="button">Go again</button>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="votes" id="votes">
+            <button class="vote vote--red" type="button" data-vote="red">
+              <svg viewBox="0 0 340 420" aria-hidden="true"><path d="M30 34v356" stroke="currentColor" stroke-width="36" stroke-linecap="round" fill="none"/><path d="M56 60c110-40 148 40 244 0v180c-96 40-134-40-244 0z" fill="currentColor"/></svg>
+              Red flag
+            </button>
+            <button class="vote vote--green" type="button" data-vote="green">
+              <svg viewBox="0 0 340 420" aria-hidden="true"><path d="M30 34v356" stroke="currentColor" stroke-width="36" stroke-linecap="round" fill="none"/><path d="M56 60c110-40 148 40 244 0v180c-96 40-134-40-244 0z" fill="currentColor"/></svg>
+              Green flag
+            </button>
+          </div>
+
+          <p class="judge-note">Warm-up round. In the app, the hive judges photos.</p>
+          <p class="sr-only" id="deckLive" aria-live="polite"></p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <section class="section wrap" aria-labelledby="how-title">
+    <h2 class="section-title" id="how-title">How it works</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-n" aria-hidden="true">1</span>
+        <h3>Post it</h3>
+        <p>One to four photos. Ask the hive to judge it, or to pick one of two.</p>
+      </li>
+      <li class="step">
+        <span class="step-n" aria-hidden="true">2</span>
+        <h3>The hive votes</h3>
+        <p>Swipe left for a red flag, right for a green one. Nobody sugar-coats it.</p>
+      </li>
+      <li class="step">
+        <span class="step-n" aria-hidden="true">3</span>
+        <h3>Get the verdict</h3>
+        <p>Watch the bar split between red and green, then share the result. Or keep it to yourself.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section wrap" aria-labelledby="hives-title">
+    <h2 class="section-title" id="hives-title">Two hives</h2>
+    <p class="section-lede">Every post lands in one of them. Pick a hive to see this page dressed for it.</p>
+    <div class="hive-grid">
+      <button class="hive hive--gut" type="button" data-set-hive="gut" aria-pressed="true">
+        <span class="hive-here">Showing now</span>
+        <span class="hive-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3 7 7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></svg>
+        </span>
+        <span class="hive-name">Gut Check</span>
+        <span class="hive-desc">Post it and get the hive's first reaction, any time of day.</span>
+        <span class="hive-status" data-open="true">Always open</span>
+      </button>
+      <button class="hive hive--dark" type="button" data-set-hive="dark" aria-pressed="false">
+        <span class="hive-here">Showing now</span>
+        <span class="hive-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.6 14.6A8.6 8.6 0 0 1 9.4 3.4a.7.7 0 0 0-.9-.9 9.9 9.9 0 1 0 13 13 .7.7 0 0 0-.9-.9z"/></svg>
+        </span>
+        <span class="hive-name">After Dark</span>
+        <span class="hive-desc">Opens at <span data-clock="21">21:00</span> and closes at <span data-clock="4">04:00</span>, your local time. Posts there stay off your public profile by default.</span>
+        <span class="hive-status" data-dark-status data-open="false">Open from 21:00 to 04:00</span>
+      </button>
+    </div>
+  </section>
   </main>
 
-  <footer>
-    <div class="footer-links" aria-label="GossHive links">
-      <a href="https://gosshive.app/privacy">Privacy</a>
-      <a href="https://gosshive.app/child-safety">Child Safety</a>
-      <a href="https://gosshive.app/delete-account">Delete Account</a>
-      <a href="https://gosshive.app/contact">Contact</a>
+  <footer class="foot">
+    <div class="foot-grid wrap">
+      <a class="brand" href="./" aria-label="GossHive home">
+        <span class="brand-tile"><img src="assets/bee.webp" alt="" width="234" height="256"></span>
+        <span>GossHive</span>
+      </a>
+      <ul class="foot-links" aria-label="GossHive resources">
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="child-safety.html">Child safety</a></li>
+        <li><a href="delete-account.html">Delete account</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="foot-note">GossHive is for adults, 18 and over.</p>
     </div>
-    <div>GossHive resources and contact details.</div>
   </footer>
 
-  <script>
-    // Platform detection for smart app store links
-    (function() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const appStoreLink = document.getElementById('appStoreLink');
-      const playStoreLink = document.getElementById('playStoreLink');
-      const downloadSection = document.getElementById('downloadSection');
-
-      // Detect iOS devices
-      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-
-      // Detect Android devices
-      const isAndroid = /android/i.test(userAgent);
-
-      // Show appropriate store badge based on platform
-      if (isIOS) {
-        appStoreLink.style.display = 'inline-block';
-        downloadSection.style.display = 'flex';
-      } else if (isAndroid) {
-        playStoreLink.style.display = 'inline-block';
-        downloadSection.style.display = 'flex';
-      } else {
-        // Desktop - show both badges
-        appStoreLink.style.display = 'inline-block';
-        playStoreLink.style.display = 'inline-block';
-        downloadSection.style.display = 'flex';
-      }
-    })();
-  </script>
+  <script src="assets/site.js" defer></script>
+  <script src="assets/deck.js" defer></script>
 </body>
 </html>
