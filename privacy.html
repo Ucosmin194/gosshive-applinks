@@ -3,206 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GossHive Privacy Policy">
   <title>GossHive Privacy Policy</title>
-  <link rel="icon" type="image/png" href="app-icon.png">
-  <link rel="apple-touch-icon" href="app-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Space+Grotesk:wght@500;700&display=swap"
-    rel="stylesheet"
-  >
-  <style>
-    :root {
-      --bg: #f5efe7;
-      --paper: #fffaf2;
-      --ink: #1d1b17;
-      --muted: #6a6258;
-      --accent: #d1552a;
-      --accent-2: #2f5d59;
-      --shadow: rgba(32, 24, 16, 0.12);
-      --ring: rgba(209, 85, 42, 0.2);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Newsreader", Georgia, serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(47, 93, 89, 0.16), transparent 38%),
-        radial-gradient(circle at 88% 18%, rgba(209, 85, 42, 0.16), transparent 42%),
-        linear-gradient(135deg, #f6ede4 0%, #f2f5ef 60%, #efe6dc 100%);
-      padding: 32px 20px 64px;
-    }
-
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      background: var(--paper);
-      border-radius: 24px;
-      padding: 42px 52px 56px;
-      box-shadow: 0 24px 60px -40px var(--shadow);
-      border: 1px solid rgba(47, 93, 89, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    main::before {
-      content: "";
-      position: absolute;
-      inset: -120px -120px auto auto;
-      height: 220px;
-      width: 220px;
-      background: radial-gradient(circle, rgba(209, 85, 42, 0.25), transparent 70%);
-      pointer-events: none;
-    }
-
-    header {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .logo-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 8px;
-    }
-
-    .app-icon-small {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      object-fit: cover;
-      box-shadow:
-        0 12px 24px -12px rgba(209, 85, 42, 0.35),
-        0 4px 8px -4px rgba(47, 93, 89, 0.2);
-      border: 1px solid rgba(47, 93, 89, 0.15);
-    }
-
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.72rem;
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      color: var(--accent-2);
-      margin: 0;
-      font-weight: 500;
-    }
-
-    h1 {
-      margin: 0;
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      font-size: clamp(2.2rem, 2.6vw + 1.2rem, 3.4rem);
-    }
-
-    .updated {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    section {
-      margin-top: 26px;
-      animation: rise 650ms ease both;
-    }
-
-    section:nth-of-type(2) { animation-delay: 80ms; }
-    section:nth-of-type(3) { animation-delay: 120ms; }
-    section:nth-of-type(4) { animation-delay: 160ms; }
-    section:nth-of-type(5) { animation-delay: 200ms; }
-
-    h2 {
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-      font-size: 1.6rem;
-      margin: 0 0 12px;
-      color: var(--accent-2);
-    }
-
-    h3 {
-      font-size: 1.15rem;
-      margin: 18px 0 8px;
-      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
-    }
-
-    p {
-      margin: 0 0 12px;
-      line-height: 1.65;
-      font-size: 1.05rem;
-    }
-
-    ul {
-      margin: 0 0 14px 22px;
-      padding: 0;
-      line-height: 1.6;
-      font-size: 1.03rem;
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover,
-    a:focus {
-      text-decoration: underline;
-    }
-
-    .callout {
-      border-left: 3px solid var(--accent);
-      padding: 10px 14px;
-      background: rgba(209, 85, 42, 0.06);
-      border-radius: 12px;
-      margin: 16px 0 0;
-    }
-
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
+  <meta name="description" content="GossHive Privacy Policy">
+  <meta name="theme-color" content="#ffbd59">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    /* Pick the hive before first paint: After Dark from 21:00 to 04:00 local time, as in the app. */
+    (function () {
+      var hive = null;
+      try { hive = sessionStorage.getItem('gh-hive'); } catch (e) {}
+      if (hive !== 'gut' && hive !== 'dark') {
+        var h = new Date().getHours();
+        hive = (h >= 21 || h < 4) ? 'dark' : 'gut';
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 720px) {
-      main {
-        padding: 32px 26px 40px;
-      }
-
-      h1 {
-        font-size: clamp(1.9rem, 4vw + 1rem, 2.8rem);
-      }
-
-      p,
-      ul {
-        font-size: 1rem;
-      }
-    }
-  </style>
+      var root = document.documentElement;
+      root.dataset.hive = hive;
+      root.classList.add('js');
+    })();
+  </script>
 </head>
 <body>
-  <main>
-    <header>
-      <div class="logo-header">
-        <img class="app-icon-small" src="app-icon.png" alt="GossHive app icon">
-        <p class="eyebrow">GossHive</p>
-      </div>
+  <header class="nav nav--over wrap">
+    <a class="brand" href="./" aria-label="GossHive home">
+      <span class="brand-tile"><img src="assets/bee.webp" alt="" width="234" height="256"></span>
+      <span>GossHive</span>
+    </a>
+    <div class="seg" role="group" aria-label="Choose a hive for this page">
+      <button type="button" data-set-hive="gut" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3 7 7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></svg>
+        <span class="seg-label">Gut Check</span>
+      </button>
+      <button type="button" data-set-hive="dark" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.6 14.6A8.6 8.6 0 0 1 9.4 3.4a.7.7 0 0 0-.9-.9 9.9 9.9 0 1 0 13 13 .7.7 0 0 0-.9-.9z"/></svg>
+        <span class="seg-label">After Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="doc">
+    <header class="doc-head">
       <h1>Privacy Policy</h1>
       <p class="updated">Last Updated: April 25, 2026</p>
     </header>
+
+    <div class="doc-body">
+
 
     <section>
       <p>
@@ -744,6 +592,25 @@
       <p><strong>If you do not agree, please do not use GossHive.</strong></p>
       <p class="updated">Last Updated: April 25, 2026 | Version: 1.4</p>
     </section>
+    </div>
   </main>
+
+  <footer class="foot">
+    <div class="foot-grid wrap">
+      <a class="brand" href="./" aria-label="GossHive home">
+        <span class="brand-tile"><img src="assets/bee.webp" alt="" width="234" height="256"></span>
+        <span>GossHive</span>
+      </a>
+      <ul class="foot-links" aria-label="GossHive resources">
+        <li><a href="privacy.html" aria-current="page">Privacy</a></li>
+        <li><a href="child-safety.html">Child safety</a></li>
+        <li><a href="delete-account.html">Delete account</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="foot-note">GossHive is for adults, 18 and over.</p>
+    </div>
+  </footer>
+
+  <script src="assets/site.js" defer></script>
 </body>
 </html>
