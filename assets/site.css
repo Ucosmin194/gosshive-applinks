@@ -1,0 +1,1560 @@
+/* GossHive site styles.
+   Colours mirror the app theme (lib/themes/app_theme.dart):
+   Gut Check = cream + honey, After Dark = deep night + honey. */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latin-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* Extended Latin (Romanian, Polish, Turkish and others). Browsers fetch it only when a page
+   uses those letters. The post page (post-page/ in the app repository) loads both files from
+   here, so keep their paths stable. */
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latin-ext-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@property --red {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+/* How far the top card leans: -1 is red, 1 is green. Registered so it can animate. */
+@property --p {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  /* Brand constants */
+  --honey: #ffbd59;
+  --honey-deep: #e0a84b;
+  --cream: #fff8f0;
+  --night: #0a0a12;
+  --night-card: #16162e;
+  --flag-green: #4caf50;
+  --flag-red: #e53935;
+
+  /* Gut Check (day) */
+  --bg: var(--cream);
+  --surface: #ffffff;
+  --text: #333333;
+  --text-strong: var(--night);
+  --text-soft: #666666;
+  --line: #f0e4d3;
+  --tint: rgba(255, 189, 89, 0.2);
+  --field: var(--honey);
+  --field-title: var(--night);
+  --field-text: rgba(10, 10, 18, 0.78);
+  --hex: var(--night);
+  --cta-bg: var(--night);
+  --cta-ink: var(--cream);
+  --seg-bg: rgba(10, 10, 18, 0.1);
+  --green-text: #2e7d32;
+  --red-text: #c62828;
+  --focus: var(--night);
+  --shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  --shadow-lift: 0 24px 48px -18px rgba(10, 10, 18, 0.45);
+
+  --wrap: 1180px;
+  --gutter: clamp(20px, 5vw, 48px);
+  --radius: 24px;
+  --radius-btn: 16px;
+
+  color-scheme: light;
+}
+
+:root[data-hive="dark"] {
+  --bg: var(--night);
+  --surface: var(--night-card);
+  --text: #eeeeee;
+  --text-strong: #ffffff;
+  --text-soft: #b8b8d0;
+  --line: #26263f;
+  --tint: rgba(255, 189, 89, 0.14);
+  --field: var(--night);
+  --field-title: var(--honey);
+  --field-text: #b8b8d0;
+  --hex: var(--honey);
+  --cta-bg: var(--honey);
+  --cta-ink: var(--night);
+  --seg-bg: rgba(255, 255, 255, 0.08);
+  --green-text: #66bb6a;
+  --red-text: #ff3864;
+  --focus: var(--honey);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.38);
+  --shadow-lift: 0 24px 48px -18px rgba(0, 0, 0, 0.7);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wrap {
+  width: min(100%, var(--wrap));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Display type: one family, condensed and heavy for headlines. */
+.display {
+  font-stretch: 62%;
+  font-weight: 900;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  word-spacing: 0.07em;
+  text-wrap: balance;
+}
+
+/* ---------- Navigation ---------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 80px;
+  padding-block: 18px;
+}
+
+/* On the home page the bar sits on top of the hero field. */
+.nav--over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  color: var(--field-title);
+}
+
+.nav--over ~ main .hero {
+  padding-top: 80px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-stretch: 75%;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.brand-tile {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--honey);
+  box-shadow: inset 0 0 0 2px var(--night);
+}
+
+.brand-tile img {
+  width: 31px;
+  height: auto;
+}
+
+/* Two-way hive switch. The same two hives exist in the app. */
+.seg {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--seg-bg);
+}
+
+html:not(.js) .seg,
+html:not(.js) .votes {
+  display: none;
+}
+
+.seg button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-weight: 650;
+  font-size: 0.9375rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.seg button svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--cta-bg);
+  color: var(--cta-ink);
+}
+
+@media (max-width: 520px) {
+  .seg button {
+    padding: 0 11px;
+  }
+  .seg-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 22px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-btn);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--honey);
+  color: var(--night);
+}
+
+.btn--primary:hover {
+  background: var(--honey-deep);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--honey);
+  color: var(--text-strong);
+}
+
+.btn--ghost:hover {
+  background: var(--tint);
+}
+
+.stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.store {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-width: 172px;
+  min-height: 62px;
+  padding: 9px 22px 10px;
+  border-radius: var(--radius-btn);
+  background: var(--cta-bg);
+  color: var(--cta-ink);
+  text-decoration: none;
+  line-height: 1;
+  transition: transform 160ms ease;
+}
+
+.store:hover {
+  transform: translateY(-2px);
+}
+
+.store-small {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  opacity: 0.82;
+}
+
+.store-big {
+  font-stretch: 85%;
+  font-weight: 800;
+  font-size: 1.4375rem;
+  letter-spacing: 0.005em;
+}
+
+.store[hidden] {
+  display: none;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--field);
+  color: var(--field-title);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding-block: clamp(20px, 4vw, 48px) clamp(48px, 7vw, 96px);
+}
+
+.hero {
+  /* Set by deck.js while a card is dragged: how far towards red or green (0 to 1). */
+  --rp: 0;
+  --gp: 0;
+}
+
+.hero-copy {
+  container-type: inline-size;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 30.5cqi, 11rem);
+}
+
+.hero-title .line {
+  display: block;
+}
+
+/* The headline answers the drag: the side you lean towards widens, the other fades. */
+.t-red,
+.t-green {
+  transition: font-stretch 280ms ease, opacity 280ms ease;
+}
+
+.t-red {
+  font-stretch: calc(62% + var(--rp) * 7%);
+  opacity: calc(1 - var(--gp) * 0.62);
+}
+
+.t-green {
+  font-stretch: calc(62% + var(--gp) * 7%);
+  opacity: calc(1 - var(--rp) * 0.62);
+}
+
+.hero.is-dragging .t-red,
+.hero.is-dragging .t-green,
+.hero.is-dragging .hexagon {
+  transition: none;
+}
+
+.hero-sub {
+  max-width: 31ch;
+  margin-top: clamp(20px, 2.6vw, 32px);
+  color: var(--field-text);
+  font-size: clamp(1.125rem, 1.5vw, 1.3125rem);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.hero .stores {
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+/* The stage: the logo's black hexagon, blown up, with the deck on top. */
+.stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding-block: clamp(56px, 6vw, 84px) clamp(40px, 5vw, 64px);
+}
+
+.hexagon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(740px, 150%);
+  aspect-ratio: 1 / 0.866;
+  transform: translate(-45%, -50%);
+  background: var(--hex);
+  /* Leans red or green with the card. */
+  background: color-mix(
+    in oklab,
+    color-mix(in oklab, var(--hex), var(--flag-red) calc(var(--rp) * 100%)),
+    var(--flag-green) calc(var(--gp) * 100%)
+  );
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  transition: background-color 420ms ease;
+}
+
+.judge {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.judge > :not(.hexagon) {
+  position: relative;
+}
+
+/* Focus rings have to show against the hexagon, then against the card on top of it. */
+.judge {
+  --focus: #ffffff;
+}
+
+:root[data-hive="dark"] .judge {
+  --focus: var(--night);
+}
+
+.judge .card {
+  --focus: var(--night);
+}
+
+:root[data-hive="dark"] .judge .card {
+  --focus: var(--honey);
+}
+
+.deck {
+  position: relative;
+  width: min(332px, 78vw);
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.deck:focus-visible {
+  outline-offset: 10px;
+  border-radius: 30px;
+}
+
+.bee {
+  position: absolute;
+  z-index: 6;
+  top: -84px;
+  right: -66px;
+  width: 164px;
+  aspect-ratio: 593 / 640;
+  transform: rotate(9deg);
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 8px 10px rgba(10, 10, 18, 0.28));
+}
+
+.bee-body {
+  position: absolute;
+  inset: 0;
+}
+
+.bee-body img {
+  width: 100%;
+  height: auto;
+}
+
+/* The pupils are drawn here so the bee can watch the card (deck.js moves them). */
+.pupil {
+  position: absolute;
+  top: 43.45%;
+  width: 5.4%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--night);
+  transform: translate(calc(-50% + var(--ex, 0px)), calc(-50% + var(--ey, 0px)));
+  transition: transform 140ms ease-out;
+}
+
+.pupil--l {
+  left: 44.99%;
+}
+
+.pupil--r {
+  left: 54.96%;
+}
+
+.cards {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px 24px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-strong);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+  transform-origin: 50% 85%;
+  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 260ms ease;
+  will-change: transform;
+}
+
+/* Honeycomb corner, as in the app's vote bar. */
+.card::after {
+  content: "";
+  position: absolute;
+  right: -24px;
+  bottom: -30px;
+  width: 190px;
+  height: 170px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='48.5' viewBox='0 0 56 48.5'%3E%3Cpath d='M14 0h28l14 24.25L42 48.5H14L0 24.25z' fill='none' stroke='%23ffbd59' stroke-width='3'/%3E%3C/svg%3E") 0 0 / 42px auto;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(circle at 100% 100%, #000 20%, transparent 72%);
+  mask-image: radial-gradient(circle at 100% 100%, #000 20%, transparent 72%);
+  pointer-events: none;
+}
+
+.card[data-pos="0"] {
+  z-index: 4;
+  cursor: grab;
+}
+
+.card[data-pos="1"] {
+  z-index: 3;
+  transform: translateY(14px) scale(0.955) rotate(-3deg);
+}
+
+.card[data-pos="2"] {
+  z-index: 2;
+  transform: translateY(26px) scale(0.91) rotate(3.5deg);
+}
+
+.card[data-pos="deep"] {
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+}
+
+.card[data-pos="gone"] {
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card.is-dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+.card-count {
+  align-self: flex-start;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--tint);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.card-text,
+.result-title,
+.section-title,
+.hive-name,
+.step h3,
+.doc h2,
+.status-card h1 {
+  word-spacing: 0.06em;
+}
+
+.card-text {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-stretch: 68%;
+  font-weight: 800;
+  font-size: clamp(2rem, 8.4vw, 2.625rem);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+.card-hint {
+  position: relative;
+  z-index: 1;
+  max-width: 17ch;
+  color: var(--text-soft);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Verdict stamps fade in with the drag. --p runs from -1 (red) to 1 (green). */
+.stamp {
+  position: absolute;
+  top: 20px;
+  z-index: 2;
+  padding: 6px 12px 7px;
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  background: var(--surface);
+  font-stretch: 70%;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stamp--red {
+  right: 18px;
+  color: var(--red-text);
+  transform: rotate(10deg);
+  opacity: calc(var(--p) * -1.4);
+}
+
+.stamp--green {
+  left: 18px;
+  color: var(--green-text);
+  transform: rotate(-10deg);
+  opacity: calc(var(--p) * 1.4);
+}
+
+/* Vote buttons: red on the left, green on the right, as in the app. */
+.votes {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.vote {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 20px 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-strong);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow: 0 8px 18px -8px rgba(10, 10, 18, 0.55);
+  cursor: pointer;
+  transition: transform 140ms ease;
+}
+
+.vote:hover {
+  transform: translateY(-2px);
+}
+
+.vote:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.vote svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.vote--red svg {
+  color: var(--flag-red);
+}
+
+.vote--green svg {
+  color: var(--flag-green);
+}
+
+.votes.is-off,
+.votes.is-off + .judge-note {
+  visibility: hidden;
+}
+
+.judge-note {
+  max-width: 30ch;
+  color: var(--cream);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+}
+
+:root[data-hive="dark"] .judge-note {
+  color: var(--night);
+}
+
+/* Result card */
+.card--result {
+  justify-content: space-between;
+  gap: 12px;
+  cursor: default;
+}
+
+.card--result[data-pos="0"] {
+  cursor: default;
+}
+
+.result-title {
+  margin-top: 6px;
+  font-stretch: 64%;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 11vw, 3.25rem);
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.result-tally {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.result-note {
+  color: var(--text-soft);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.result-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 10px;
+}
+
+.result-actions .btn {
+  flex: 1;
+  min-height: 48px;
+  padding: 0 12px;
+  font-size: 1rem;
+}
+
+/* Red-to-green split bar, after the app's ratio bar. --red is the red share. */
+.ratio {
+  --red: 50%;
+  position: relative;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #8b0000 0%,
+    #dc143c calc(var(--red) - 16%),
+    #ff4444 calc(var(--red) - 7%),
+    #ffd700 var(--red),
+    #66dd66 calc(var(--red) + 7%),
+    #228b22 calc(var(--red) + 16%),
+    #006400 100%
+  );
+  box-shadow: 0 6px 14px -6px rgba(10, 10, 18, 0.5);
+  overflow: hidden;
+}
+
+.ratio::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='48.5' viewBox='0 0 56 48.5'%3E%3Cpath d='M14 0h28l14 24.25L42 48.5H14L0 24.25z' fill='none' stroke='%23ffffff' stroke-opacity='.3' stroke-width='3'/%3E%3C/svg%3E") 0 0 / 16px auto;
+}
+
+.ratio::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.12) 32%, transparent);
+}
+
+/* ---------- Content sections ---------- */
+
+.section {
+  padding-block: clamp(56px, 8vw, 104px);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section-title {
+  font-stretch: 66%;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 0.92;
+  color: var(--text-strong);
+  text-wrap: balance;
+}
+
+.section-lede {
+  max-width: 46ch;
+  margin-top: 14px;
+  color: var(--text-soft);
+  font-size: 1.125rem;
+}
+
+/* How it works: a real sequence, so the steps are numbered. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 56px);
+  margin-top: clamp(32px, 4vw, 52px);
+  padding: 0;
+  list-style: none;
+}
+
+.step-n {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  aspect-ratio: 1 / 0.866;
+  background: var(--honey);
+  color: var(--night);
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  font-stretch: 70%;
+  font-weight: 900;
+  font-size: 1.625rem;
+  line-height: 1;
+}
+
+.step h3 {
+  margin-top: 18px;
+  font-stretch: 72%;
+  font-weight: 800;
+  font-size: 1.875rem;
+  line-height: 1;
+  color: var(--text-strong);
+}
+
+.step p {
+  max-width: 32ch;
+  margin-top: 10px;
+}
+
+/* Two hives. Each panel always wears its own hive's colours. */
+.hive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 28px);
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.hive {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 268px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 3px solid transparent;
+  border-radius: var(--radius);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 180ms ease;
+}
+
+.hive:hover {
+  transform: translateY(-3px);
+}
+
+.hive--gut {
+  background: #ffffff;
+  color: #333333;
+  border-color: var(--line);
+}
+
+.hive--dark {
+  background: var(--night-card);
+  color: #eeeeee;
+  border-color: #26263f;
+}
+
+.hive[aria-pressed="true"] {
+  border-color: var(--honey);
+}
+
+.hive:focus-visible {
+  border-radius: var(--radius);
+}
+
+.hive-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  aspect-ratio: 1 / 0.866;
+  background: var(--honey);
+  color: var(--night);
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+}
+
+.hive-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.hive-name {
+  margin-top: 8px;
+  font-stretch: 68%;
+  font-weight: 900;
+  font-size: clamp(2.25rem, 4.6vw, 3.25rem);
+  line-height: 0.92;
+}
+
+.hive--gut .hive-name {
+  color: var(--night);
+}
+
+.hive--dark .hive-name {
+  color: var(--honey);
+}
+
+.hive-desc {
+  max-width: 34ch;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.hive--dark .hive-desc {
+  color: #b8b8d0;
+}
+
+.hive--gut .hive-desc {
+  color: #555555;
+}
+
+.hive-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+}
+
+.hive-status::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #9a9aa8;
+  flex: none;
+}
+
+.hive-status[data-open="true"]::before {
+  background: var(--flag-green);
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.22);
+}
+
+.hive-here {
+  position: absolute;
+  top: clamp(22px, 3vw, 34px);
+  right: clamp(22px, 3vw, 34px);
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--honey);
+  color: var(--night);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hive[aria-pressed="false"] .hive-here {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+
+.foot {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+}
+
+.foot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+  padding-block: 28px 36px;
+}
+
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  padding: 0;
+  list-style: none;
+  font-weight: 600;
+}
+
+.foot-links a {
+  display: inline-block;
+  padding-block: 8px;
+  text-decoration: none;
+}
+
+.foot-links a:hover,
+.foot-links a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--honey);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+
+.foot-note {
+  flex-basis: 100%;
+  color: var(--text-soft);
+  font-size: 0.9375rem;
+}
+
+/* ---------- Document pages (privacy, child safety, contact, delete account) ---------- */
+
+.doc {
+  --measure: 760px;
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+/* The title sits on the same field as the home page hero. */
+.doc-head {
+  margin-bottom: clamp(28px, 5vw, 52px);
+  border-bottom: 1px solid var(--line);
+  padding: calc(80px + clamp(20px, 4vw, 44px)) max(var(--gutter), calc((100% - var(--measure)) / 2)) clamp(30px, 5vw, 56px);
+  background: var(--field);
+  color: var(--field-title);
+}
+
+.doc h1 {
+  font-stretch: 62%;
+  font-weight: 900;
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 0.88;
+  letter-spacing: -0.005em;
+  word-spacing: 0.06em;
+  text-wrap: balance;
+}
+
+.doc-head .updated,
+.doc-head .intro {
+  max-width: 52ch;
+  margin: 18px 0 0;
+  color: var(--field-text);
+  font-weight: 500;
+}
+
+.doc-head .intro {
+  font-size: 1.1875rem;
+  line-height: 1.5;
+}
+
+.doc-body {
+  width: min(100%, calc(var(--measure) + 2 * var(--gutter)));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  /* Long addresses in the policies must wrap on narrow screens. */
+  overflow-wrap: anywhere;
+}
+
+.doc section {
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.doc-body > :first-child {
+  margin-top: 0;
+}
+
+.doc h2 {
+  margin: clamp(28px, 4vw, 44px) 0 12px;
+  font-stretch: 74%;
+  font-weight: 800;
+  font-size: clamp(1.625rem, 3.4vw, 2.125rem);
+  line-height: 1.05;
+  color: var(--text-strong);
+}
+
+.doc section > h2:first-child {
+  margin-top: 0;
+}
+
+.doc h3 {
+  margin: 22px 0 8px;
+  font-stretch: 88%;
+  font-weight: 700;
+  font-size: 1.1875rem;
+  line-height: 1.25;
+  color: var(--text-strong);
+}
+
+.doc p {
+  margin: 0 0 12px;
+}
+
+.doc ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.doc li {
+  margin-bottom: 6px;
+}
+
+.doc li::marker {
+  color: var(--honey-deep);
+}
+
+.doc a {
+  color: var(--text-strong);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--honey);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.doc a:hover {
+  text-decoration-thickness: 4px;
+}
+
+.doc strong {
+  color: var(--text-strong);
+  font-weight: 700;
+}
+
+.doc .callout,
+.doc .callout-important {
+  margin: 16px 0;
+  padding: 14px 18px;
+  border-left: 4px solid var(--honey);
+  border-radius: 14px;
+  background: var(--tint);
+}
+
+.doc .callout > :last-child,
+.doc .callout-important > :last-child,
+.doc .zero-tolerance > :last-child,
+.doc .contact-card > :last-child {
+  margin-bottom: 0;
+}
+
+.doc .zero-tolerance {
+  margin: 16px 0;
+  padding: 16px 18px;
+  border: 2px solid var(--red-text);
+  border-radius: 14px;
+  color: var(--text-strong);
+  font-weight: 700;
+}
+
+.doc .contact-card {
+  margin: 0 0 14px;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.doc .contact-card h3 {
+  margin-top: 0;
+}
+
+/* ---------- Status pages (email confirmation, not found) ---------- */
+
+.status {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: clamp(88px, 12vw, 120px) var(--gutter) clamp(32px, 6vw, 64px);
+  background: var(--field);
+  color: var(--field-title);
+}
+
+.status-card {
+  width: min(100%, 460px);
+  padding: clamp(28px, 6vw, 44px);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-lift);
+  text-align: center;
+}
+
+.bee-fig {
+  position: relative;
+  width: 116px;
+  aspect-ratio: 593 / 640;
+  margin: -96px auto 8px;
+  transform: rotate(-6deg);
+  filter: drop-shadow(0 8px 10px rgba(10, 10, 18, 0.25));
+}
+
+.bee-fig img {
+  width: 100%;
+  height: auto;
+}
+
+.status-card h1 {
+  font-stretch: 64%;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 10vw, 3.5rem);
+  line-height: 0.92;
+  color: var(--text-strong);
+  text-wrap: balance;
+}
+
+.status-card p {
+  margin-top: 14px;
+}
+
+.status-card .stores,
+.status-card .actions {
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.status-card .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.status-card .actions[hidden] {
+  display: none;
+}
+
+.status-card .actions + .stores {
+  margin-top: 12px;
+}
+
+.status-card .store {
+  background: var(--night);
+  color: var(--cream);
+}
+
+.status-card .status-back {
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.status-card .status-back a {
+  text-decoration: underline;
+  text-decoration-color: var(--honey);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+:root[data-hive="dark"] .status-card .store {
+  background: var(--honey);
+  color: var(--night);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 22px auto 0;
+  border: 4px solid var(--tint);
+  border-top-color: var(--honey);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Motion ---------- */
+
+/* One load moment: the bee lands on the deck, as it does on the app's start screen. */
+@keyframes bee-land {
+  0% {
+    opacity: 0;
+    transform: translate(120px, -150px) rotate(38deg) scale(0.7);
+  }
+  62% {
+    opacity: 1;
+    transform: translate(-6px, 7px) rotate(3deg) scale(1.04);
+  }
+  82% {
+    transform: translate(2px, -3px) rotate(11deg) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(9deg);
+  }
+}
+
+.js .bee {
+  animation: bee-land 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 420ms both;
+}
+
+/* The deck deals itself in just before the bee lands. */
+.js .deck:not(.is-ready) .card {
+  opacity: 0;
+  transform: translateY(46px) scale(0.92);
+  transition: none;
+}
+
+.deck.is-ready .card[data-pos="1"] {
+  transition-delay: 70ms;
+}
+
+.deck.is-ready .card[data-pos="2"] {
+  transition-delay: 140ms;
+}
+
+/* If nobody touches the deck, the top card leans both ways once to show the gesture. */
+@keyframes nudge {
+  0%,
+  100% {
+    transform: none;
+    --p: 0;
+  }
+  22%,
+  34% {
+    transform: translate(46px, 4px) rotate(4deg);
+    --p: 0.75;
+  }
+  62%,
+  74% {
+    transform: translate(-46px, 4px) rotate(-4deg);
+    --p: -0.75;
+  }
+}
+
+.card.is-nudging {
+  animation: nudge 1900ms cubic-bezier(0.4, 0, 0.3, 1);
+}
+
+/* While the hive changes, nothing else should be mid-fade. */
+.hive-switching *,
+.hive-switching *::before,
+.hive-switching *::after {
+  transition: none !important;
+}
+
+/* The bee reacts to each vote. */
+@keyframes bee-yes {
+  35% {
+    transform: translateY(-16px) rotate(-7deg);
+  }
+  70% {
+    transform: translateY(2px) rotate(3deg);
+  }
+}
+
+@keyframes bee-no {
+  20% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(8deg);
+  }
+  60% {
+    transform: rotate(-6deg);
+  }
+  80% {
+    transform: rotate(3deg);
+  }
+}
+
+.bee-body.is-yes {
+  animation: bee-yes 520ms ease-out;
+}
+
+.bee-body.is-no {
+  animation: bee-no 480ms ease-in-out;
+}
+
+/* The verdict bar slides from an even split to the result. */
+.ratio {
+  transition: --red 900ms cubic-bezier(0.2, 0.8, 0.2, 1) 180ms;
+}
+
+/* Hive switch: the new look opens out of a hexagon (see site.js). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .bee,
+  .bee-body.is-yes,
+  .bee-body.is-no {
+    animation: none;
+  }
+  .card,
+  .store,
+  .vote,
+  .hive,
+  .ratio,
+  .pupil,
+  .hexagon,
+  .t-red,
+  .t-green {
+    transition: none;
+  }
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding-bottom: 56px;
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 27cqi, 8.75rem);
+  }
+
+  .stage {
+    padding-top: 92px;
+  }
+
+  .hexagon {
+    width: min(700px, 190vw);
+    transform: translate(-50%, -50%);
+  }
+
+  .bee {
+    top: -78px;
+    right: -30px;
+    width: 138px;
+  }
+
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    column-gap: 18px;
+    align-items: start;
+  }
+
+  .step-n {
+    grid-row: 1 / span 2;
+  }
+
+  .step h3 {
+    margin-top: 8px;
+  }
+
+  .step p {
+    grid-column: 2;
+    max-width: 40ch;
+    margin-top: 6px;
+  }
+
+  .hive-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hive {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .store {
+    flex: 1 1 100%;
+  }
+}

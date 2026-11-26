@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Not found - GossHive</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#ffbd59">
+  <!-- This page is served for any missing path, so its files are linked from the site root. -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/site.css">
+  <script>
+    /* Pick the hive before first paint: After Dark from 21:00 to 04:00 local time, as in the app. */
+    (function () {
+      var h = new Date().getHours();
+      document.documentElement.dataset.hive = (h >= 21 || h < 4) ? 'dark' : 'gut';
+    })();
+  </script>
+</head>
+<body>
+  <main class="status">
+    <div class="status-card">
+      <div class="bee-fig" aria-hidden="true">
+        <img src="/assets/bee-sticker.webp" alt="" width="593" height="640">
+        <span class="pupil pupil--l"></span>
+        <span class="pupil pupil--r"></span>
+      </div>
+      <h1 id="title">Red flag. Nothing here.</h1>
+      <p id="message">This page doesn't exist. The app does.</p>
+      <div class="actions" id="openRow" hidden>
+        <a class="btn btn--primary" id="openApp" href="/">Open in the app</a>
+      </div>
+      <div class="stores">
+        <a class="store" data-store="ios" href="https://apps.apple.com/app/gosshive/id6757358951">
+          <span class="store-small">Download on the</span>
+          <span class="store-big">App Store</span>
+        </a>
+        <a class="store" data-store="android" href="https://play.google.com/store/apps/details?id=app.gosshive&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dlink_fallback">
+          <span class="store-small">Get it on</span>
+          <span class="store-big">Google Play</span>
+        </a>
+      </div>
+      <p class="status-back"><a href="/">Go to the GossHive home page</a></p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var path = window.location.pathname;
+      var title = document.getElementById('title');
+      var message = document.getElementById('message');
+      var openRow = document.getElementById('openRow');
+      var openApp = document.getElementById('openApp');
+
+      var PLAY_URL = 'https://play.google.com/store/apps/details?id=app.gosshive&referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dlink_fallback';
+      var ua = navigator.userAgent || '';
+      var isIOS = /iPad|iPhone|iPod/.test(ua);
+      var isAndroid = /android/i.test(ua);
+
+      /* Links to posts, profiles and hives belong to the app (see .well-known and the app's
+         DeepLinkService). A phone with the app installed never loads this page for them, so
+         anyone here either has no app, or is inside a browser that did not hand the link over. */
+      var content = path.match(/^\/(post|profile|user|hive)\/[^\/]+/);
+      if (content) {
+        var target = path + window.location.search;
+        title.textContent = 'This one lives in the app.';
+        if (isAndroid) {
+          /* Opens the same https link in the app, or the Play Store if the app is missing. */
+          openApp.href = 'intent://gosshive.app' + target +
+            '#Intent;scheme=https;package=app.gosshive;S.browser_fallback_url=' +
+            encodeURIComponent(PLAY_URL) + ';end';
+          openRow.hidden = false;
+          message.textContent = 'Open it in GossHive, or get the app first.';
+        } else if (isIOS) {
+          /* Same form the app builds for its own scheme: gosshive:/post/<id>. */
+          openApp.href = 'gosshive:' + target;
+          openRow.hidden = false;
+          message.textContent = 'Open it in GossHive, or get the app first.';
+        } else {
+          message.textContent = 'Open this link on your phone. GossHive will take it from there.';
+        }
+      } else if (/^\/(reset-password|auth\/)/.test(path)) {
+        title.textContent = 'Open this on your phone.';
+        message.textContent = 'This link finishes in the GossHive app. Open it on the phone where the app is installed.';
+      }
+
+      if (isIOS || isAndroid) {
+        document.querySelectorAll('[data-store]').forEach(function (el) {
+          el.hidden = el.dataset.store !== (isIOS ? 'ios' : 'android');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
