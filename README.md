@@ -50,7 +50,7 @@ Plain HTML, CSS and JavaScript. No build step.
 | `assets/site.css` | All styles. Colours mirror the app theme (`lib/themes/app_theme.dart`) |
 | `assets/site.js` | Hive switch, After Dark clock, store link per device |
 | `assets/deck.js` | The swipe deck on the home page |
-| `assets/fonts/` | Archivo variable font, self-hosted (SIL Open Font License, see `OFL.txt`) |
+| `assets/fonts/` | Archivo variable font, self-hosted (SIL Open Font License, see `OFL.txt`). The post page loads these two files too, so their paths must not change |
 
 ### Things to keep in sync with the app
 
